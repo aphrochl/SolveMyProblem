@@ -1,9 +1,9 @@
+Στο πρώτο terminal:
 docker-compose build 
 
 docker-compose up --build
 
-
-Σε άλλο:
+Σε άλλο terminal:
 node app.js
 
 Σε άλλο Μέσα στο frontend:
