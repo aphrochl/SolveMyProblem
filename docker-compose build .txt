@@ -1,0 +1,13 @@
+docker-compose build 
+
+docker-compose up --build
+
+
+Σε άλλο:
+node app.js
+
+Σε άλλο Μέσα στο frontend:
+cd frontend
+npm start
+
+
