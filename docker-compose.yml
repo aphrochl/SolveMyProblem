@@ -1,0 +1,105 @@
+version: '3.8'
+
+services:
+  user-service:
+    build:
+      context: ./user-service
+    ports:
+      - "3001:3001"
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    networks:
+      - solveMyProblemNetwork
+
+  payment-service:
+    build:
+      context: ./payment-service
+    ports:
+      - "3002:3002" # Ensure this is the port your service is running on
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    networks:
+      - solveMyProblemNetwork
+
+  problem-service:
+    build:
+      context: ./problem-service
+    ports:
+      - "3003:3003"
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    networks:
+      - solveMyProblemNetwork
+
+  solver-service:
+    build:
+      context: ./solver-service
+    ports:
+      - "5000:5000"
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    networks:
+      - solveMyProblemNetwork
+
+  statistics-service:
+    build:
+      context: ./statistics-service
+    ports:
+      - "3004:3004"
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    networks:
+      - solveMyProblemNetwork
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    networks:
+      - solveMyProblemNetwork
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    networks:
+      - solveMyProblemNetwork
+
+  database:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - ./database/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5433"
+    networks:
+      - solveMyProblemNetwork
+
+networks:
+  solveMyProblemNetwork:
+    driver: bridge
