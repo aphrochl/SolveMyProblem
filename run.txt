@@ -6,6 +6,11 @@ docker-compose up --build
 Σε άλλο terminal:
 node app.js
 
+Σε άλλο terminal:
+cd payment-service
+cd src
+node index.js
+
 Σε άλλο Μέσα στο frontend:
 cd frontend
 npm start
