@@ -1,13 +1,14 @@
+ // problem-service/src/index.js
 require('dotenv').config(); // Φόρτωση των μεταβλητών περιβάλλοντος
 
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const problemRoutes = require('./routes/problems');
+const problemRoutes = require('./routes/problems'); // Ενημερώστε το path αν είναι διαφορετικό
 const pool = require('./db');
 
 const app = express();
-const port = 3003;
+const port = process.env.PORT || 3003;
 
 // Ενεργοποίηση CORS
 app.use(cors({
@@ -45,5 +46,3 @@ pool.query('SELECT NOW()', (err, res) => {
 app.listen(port, () => {
   console.log(`Problem service running on port ${port}`);
 });
-
-console.log(process.env.POSTGRES_HOST);
