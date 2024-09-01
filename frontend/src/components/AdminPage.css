@@ -1,0 +1,77 @@
+/* src/components/AdminPage.css */
+
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.system-info {
+    align-self: flex-end;
+}
+
+/* Στυλ για το κουμπί "Back" */
+.back-button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.admin-main {
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+}
+
+.activity-table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.activity-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #eee;
+    border-radius: 4px;
+}
+
+.activity-row span, .activity-row button {
+    flex: 1;
+    text-align: center;
+}
+
+.admin-footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+}

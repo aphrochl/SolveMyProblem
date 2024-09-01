@@ -7,12 +7,12 @@ const SubmitProblemForm = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:3007/submit-problem', {
+            const response = await fetch('http://localhost:3003/problems/submit-problem', { // Διόρθωση διεύθυνσης
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ description }), // Αφαίρεση του userId
+                body: JSON.stringify({ description }),
             });
 
             if (!response.ok) {
