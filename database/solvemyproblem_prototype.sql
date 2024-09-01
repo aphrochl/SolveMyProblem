@@ -86,6 +86,10 @@ ALTER TABLE `problems`
   ADD CONSTRAINT `problem_model_used` FOREIGN KEY (`problem_model`) REFERENCES `models` (`model_name`);
 COMMIT;
 
+-- Modify the problems table to include a title column
+ALTER TABLE problems ADD COLUMN title VARCHAR(255);
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
