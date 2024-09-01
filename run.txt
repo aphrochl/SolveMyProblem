@@ -18,7 +18,8 @@ node index.js
 
 Σε άλλο Μέσα στο frontend:
 cd frontend
+npm install react-router-dom
 npm start
 
-
+ 
   
