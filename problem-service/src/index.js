@@ -1,40 +1,38 @@
- // problem-service/src/index.js
-require('dotenv').config(); // Φόρτωση των μεταβλητών περιβάλλοντος
+// problem-service/src/index.js
+require('dotenv').config(); // Load environment variables
 
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const problemRoutes = require('./routes/problems'); // Ενημερώστε το path αν είναι διαφορετικό
-const pool = require('./db');
+const problemRoutes = require('./routes/problems'); // Ensure this path is correct
+const pool = require('./db'); // Import your database pool setup
 
 const app = express();
-const port = process.env.PORT || 3003;
+const port = process.env.PORT || 3003; // Ensure the port is correctly set to 3003 or your chosen port
 
-// Ενεργοποίηση CORS
+// Enable CORS with specific settings
 app.use(cors({
-  origin: 'http://localhost:3006',
+  origin: 'http://localhost:3006', // Replace with your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-// Χρήση του body-parser middleware
+// Use body-parser middleware
 app.use(bodyParser.json());
 
-// Ορισμός των routes
+// Define routes
 app.use('/problems', problemRoutes);
 
-// Έλεγχος σύνδεσης στη βάση δεδομένων
+// Check database connection
 pool.connect((err, client, release) => {
   if (err) {
     return console.error('Error acquiring client', err.stack);
   }
   console.log('PostgreSQL connected');
-
-  // Κλείσιμο της σύνδεσης για αποφυγή διαρροών
-  release();
+  release(); // Release the client back to the pool
 });
 
-// Έλεγχος της σύνδεσης με ένα απλό query
+// Test the database connection with a simple query
 pool.query('SELECT NOW()', (err, res) => {
   if (err) {
     console.error('Error executing query', err.stack);
@@ -43,6 +41,7 @@ pool.query('SELECT NOW()', (err, res) => {
   }
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`Problem service running on port ${port}`);
 });
