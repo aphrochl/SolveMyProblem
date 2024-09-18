@@ -1,25 +1,9 @@
-Στο πρώτο terminal:
-docker-compose build 
+Για πρώτη φορά που θα κατεβάσετε το backend directory:
+cd backend 
+nmp install
 
-docker-compose up --build
+Γενικά πάντα:
 
-Σε άλλο terminal:
-node app.js
-
-Σε άλλο terminal:
-cd payment-service
-cd src
-node index.js
-
-Σε άλλο terminal:
-cd problem-service
-cd src
-node index.js  
-
-Σε άλλο Μέσα στο frontend:
-cd frontend
-npm install react-router-dom
-npm start
-
- 
-  
+docker-compose down   
+docker-compose build
+docker-compose up
