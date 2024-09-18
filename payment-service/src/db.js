@@ -1,10 +1,11 @@
 const { Pool } = require('pg');
+require('dotenv').config(); // Load environment variables
 
 const pool = new Pool({
-    host: process.env.POSTGRES_HOST,
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
+    user: process.env.POSTGRES_USER || 'postgres',
+    host: process.env.POSTGRES_HOST || 'host.docker.internal',
+    database: process.env.POSTGRES_DB || 'mydatabase',
+    password: process.env.POSTGRES_PASSWORD || '2372002',
     port: process.env.POSTGRES_PORT || 5433,
 });
 
