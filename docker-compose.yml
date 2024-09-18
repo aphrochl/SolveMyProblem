@@ -57,6 +57,20 @@ services:
     networks:
       - solveMyProblemNetwork
 
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3007:3007"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_HOST: host.docker.internal
+      POSTGRES_DB: mydatabase
+      POSTGRES_PASSWORD: 2372002
+      POSTGRES_PORT: 5433
+    networks:
+      - solveMyProblemNetwork
+
 networks:
   solveMyProblemNetwork:
     driver: bridge
