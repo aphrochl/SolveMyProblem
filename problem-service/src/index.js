@@ -1,11 +1,10 @@
-// problem-service/src/index.js
 require('dotenv').config(); // Load environment variables
-
+const pool = require('./db');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const problemRoutes = require('./routes/problems'); // Ensure this path is correct
-const pool = require('./db'); // Import your database pool setup
+// const pool = require('./db'); // Import your database pool setup
 
 const app = express();
 const port = process.env.PORT || 3003; // Ensure the port is correctly set to 3003 or your chosen port
