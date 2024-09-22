@@ -12,7 +12,7 @@ const purchaseCredits = async (req, res) => {
 
     try {
         const result = await pool.query(
-            'INSERT INTO payments (amount) VALUES ($1) RETURNING *',
+            'INSERT INTO payments (amount, purchased_at) VALUES ($1, NOW()) RETURNING *',
             [amount]
         );
 
