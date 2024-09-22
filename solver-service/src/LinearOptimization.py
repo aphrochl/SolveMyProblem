@@ -2,7 +2,7 @@
 from ortools.linear_solver import pywraplp
 
 # This is the function that solves the linear optimization problem
-def LinearSolver(description): # Description as JSON
+def linearSolver(description): # Description as JSON
 
     # Instantiate a Glop solver, naming it LinearExample.
     solver = pywraplp.Solver.CreateSolver("GLOP")
