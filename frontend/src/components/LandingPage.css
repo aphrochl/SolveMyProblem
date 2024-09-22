@@ -1,11 +1,24 @@
 /* src/components/LandingPage.css */
+/* LandingPage.css */
 
+/* Reset margins and padding for the body */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure the landing-page class fills the whole viewport */
+/* Change gradient from left to right */
 .landing-page {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(to right, #ccfed8, #9ec5f7);
     align-items: center;
     justify-content: space-between;
-    height: 100vh;
+    overflow: hidden; /* In case of potential scrollbars */
 }
 
 .landing-header {
@@ -14,7 +27,7 @@
     align-items: center;
     width: 100%;
     padding: 20px;
-    background-color: #f4f4f4;
+    background: linear-gradient(to right, #ccfed8, #9ec5f7);
 }
 
 .logo {
@@ -35,12 +48,12 @@
     cursor: pointer;
     border: none;
     border-radius: 4px;
-    background-color: #007bff;
+    background-color: #000000;
     color: white;
 }
 
 .admin-button:hover, .guest-button:hover {
-    background-color: #0056b3;
+    background-color: #000000;
 }
 
 .login {
@@ -87,5 +100,18 @@
     width: 100%;
     text-align: center;
     padding: 10px;
-    background-color: #f4f4f4;
+    background: linear-gradient(to right, #ccfed8, #9ec5f7)
+}
+.landing-nav button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #000000; /* Set background color to black */
+    color: white; /* Set the text color to white for better contrast */
+    border: none;
+    border-radius: 4px; /* Optional: Add rounded corners */
+}
+
+.landing-nav button:hover {
+    background-color: #333333; /* Set a slightly lighter black for hover effect */
 }
