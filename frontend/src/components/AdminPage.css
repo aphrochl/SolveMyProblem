@@ -5,7 +5,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    background: linear-gradient(to right, #ccfed8, #9ec5f7);
     height: 100vh;
+    padding: 0;
+    margin: 0;
 }
 
 .admin-header {
@@ -14,32 +17,34 @@
     align-items: center;
     width: 100%;
     padding: 20px;
-    background-color: #f4f4f4;
+    background: linear-gradient(to right, #ccfed8, #9ec5f7);
 }
 
-.logo {
-    text-align: center;
-    margin-bottom: 10px;
+/* Align the system info to the right */
+.system-info {
+    align-self: flex-end;
+    text-align: right; /* Align text to the right */
+    margin-left: auto; /* Push the system info to the right */
 }
 
 .system-info {
     align-self: flex-end;
 }
 
-/* Στυλ για το κουμπί "Back" */
+/* Back button styles */
 .back-button {
     margin: 10px;
     padding: 10px 20px;
     font-size: 14px;
     cursor: pointer;
-    background-color: #007bff;
+    background-color: #000000;
     color: white;
     border: none;
     border-radius: 4px;
 }
 
 .back-button:hover {
-    background-color: #0056b3;
+    background-color: #444444;
 }
 
 .admin-main {
@@ -55,23 +60,32 @@
     gap: 10px;
 }
 
+/* Style for each activity row */
 .activity-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #eee;
     border-radius: 4px;
+    background: transparent; /* Remove the background color */
 }
 
+/* Ensure all text and buttons are aligned properly */
 .activity-row span, .activity-row button {
     flex: 1;
     text-align: center;
 }
 
-.admin-footer {
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-    background-color: #f4f4f4;
+/* Style for the buttons inside the activity rows */
+.activity-row button {
+    background-color: #444444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.activity-row button:hover {
+    background-color: #444444; /* Darken on hover */
 }
