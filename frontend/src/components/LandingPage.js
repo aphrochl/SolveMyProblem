@@ -20,8 +20,8 @@ const LandingPage = () => {
 
                 {/* Buttons for Administrator and User */}
                 <div className="user-buttons">
-                    <button className="admin-button" onClick={() => navigate('/admin')}>Administrator</button>
-                    <button className="guest-button" onClick={() => navigate('/user')}>User</button>
+                    <button className="admin-button" onClick={() => navigate('/admin')}>Manage Problems</button>
+                    <button className="guest-button" onClick={() => navigate('/user')}>Buy Credits and Submit Problem</button>
                 </div>
 
                 <div className="system-info">
@@ -34,7 +34,6 @@ const LandingPage = () => {
             </div>
             <nav className="landing-nav">
                 <button>About</button>
-                <button>Demo</button>
                 <button>Instructions</button>
             </nav>
 
