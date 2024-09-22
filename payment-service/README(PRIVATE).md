@@ -14,6 +14,7 @@ To run the new payment-service, you need to:
 
 ```sh
    TRUNCATE TABLE payments;
+```
 
 4. From a new terminal:
 
@@ -21,14 +22,15 @@ To run the new payment-service, you need to:
 
 ```sh
    Invoke-RestMethod -Uri http://localhost:3002/api/purchase-credits -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"amount": 50.00}'
-
+```
    (change the amount to whatevs)
+
 
    to consume credits:
 
 ```sh
-   Invoke-RestMethod -Uri http://localhost:3002/api/consume-credits -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"amountToUse": 10.00}' 
-
+   Invoke-RestMethod -Uri http://localhost:3002/api/consume-credits -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"amountToUse": 10.00}'
+```
    (change the amount to whatevs)
 
    to see the available credits:
