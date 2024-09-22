@@ -1,31 +1,37 @@
-// src/components/LandingPage.js
-
-import React from 'react';
+import React, { useState, useEffect } from 'react'; // Import useState and useEffect
 import { useNavigate } from 'react-router-dom';
-import './LandingPage.css'; // Εισάγουμε το CSS αρχείο για στυλ
+import './LandingPage.css'; // Import CSS
+import logo from '../logo.png'; // Import the logo image
 
 const LandingPage = () => {
-    const navigate = useNavigate(); // Χρησιμοποιούμε το useNavigate για να πλοηγηθούμε
+    const navigate = useNavigate(); // Use useNavigate to navigate
+    const [dateTime, setDateTime] = useState(new Date()); // Initialize state for date/time
+    const [systemHealth, setSystemHealth] = useState('Healthy'); // Simulate system health status
+
+    // Use useEffect to update date and time every second
+    useEffect(() => {
+        const interval = setInterval(() => setDateTime(new Date()), 1000); // Update time every second
+        return () => clearInterval(interval); // Cleanup interval on component unmount
+    }, []);
 
     return (
         <div className="landing-page">
             <header className="landing-header">
-                <div className="logo">solveME logo area (70%)</div>
 
-                {/* Προσθέτουμε τα κουμπιά "Administrator" και "User" κάτω από το logo */}
+                {/* Buttons for Administrator and User */}
                 <div className="user-buttons">
                     <button className="admin-button" onClick={() => navigate('/admin')}>Administrator</button>
-                    <button className="guest-button" onClick={() => navigate('/user')}>User</button> {/* Ενημερώθηκε η διαδρομή για τον χρήστη */}
+                    <button className="guest-button" onClick={() => navigate('/user')}>User</button>
                 </div>
 
-                <div className="login">Login</div>
-                <div className="system-info">system info: date/time, health...</div>
+                <div className="system-info">
+                    <span>{`System info: ${dateTime.toLocaleString()}`}</span> {/* Display date and time */}
+                    <span>{`, System Health: ${systemHealth}`}</span> {/* Display system health */}
+                </div>
             </header>
-
-            <main className="landing-main">
-                <div className="photo">big solveME photo</div>
-            </main>
-
+            <div className="logo">
+                <img src={logo} alt="solveME Logo" style={{width: '70%'}}/> {/* Display the logo image */}
+            </div>
             <nav className="landing-nav">
                 <button>About</button>
                 <button>Demo</button>
