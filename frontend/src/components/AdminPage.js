@@ -1,12 +1,20 @@
-// src/components/AdminPage.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminPage.css';
 
 const AdminPage = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Use useNavigate to navigate
+    const [dateTime, setDateTime] = useState(new Date()); // Initialize state for date/time
+    const [systemHealth, setSystemHealth] = useState('Healthy'); // Simulate system health status
     const [problems, setProblems] = useState([]);
 
+    // Use useEffect to update date and time every second
+    useEffect(() => {
+        const interval = setInterval(() => setDateTime(new Date()), 1000); // Update time every second
+        return () => clearInterval(interval); // Cleanup interval on component unmount
+    }, []);
+
+    // Fetch problems on component mount
     useEffect(() => {
         const fetchProblems = async () => {
             try {
@@ -21,6 +29,7 @@ const AdminPage = () => {
         fetchProblems();
     }, []);
 
+    // Handle problem deletion
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this problem?')) {
             try {
@@ -44,14 +53,16 @@ const AdminPage = () => {
     return (
         <div className="admin-page">
             <header className="admin-header">
-                <div className="logo">solveME logo area (70%)</div>
-                <div className="system-info">system info: date/time, health...</div>
+                <div className="system-info">
+                    <span>{`System info: ${dateTime.toLocaleString()}`}</span> {/* Display date and time */}
+                    <span>{`, System Health: ${systemHealth}`}</span> {/* Display system health */}
+                </div>
             </header>
 
             <button className="back-button" onClick={() => navigate(-1)}>Back</button>
 
             <main className="admin-main">
-                <h2>Activity</h2>
+                <h2>Manage Problems</h2>
                 <div className="activity-table">
                     {problems.map((problem) => (
                         <div className="activity-row" key={problem.id}>
@@ -60,18 +71,15 @@ const AdminPage = () => {
                             <span>{problem.description || 'No Description'}</span>
                             <span>created on {new Date(problem.created_at).toLocaleDateString()}</span>
                             <span>{problem.status || 'Status Unknown'}</span>
-                            <button onClick={() => navigate(`/edit/${problem.id}`)}>view/edit</button>
-                            <button onClick={() => navigate(`/run/${problem.id}`)}>run</button>
-                            <button onClick={() => navigate(`/results/${problem.id}`)}>view results</button> {/* Updated line */}
-                            <button onClick={() => handleDelete(problem.id)}>delete</button>
+                            <button onClick={() => navigate(`/edit/${problem.id}`)}>View/Edit</button>
+                            <button onClick={() => navigate(`/run/${problem.id}`)}>Run</button>
+                            <button onClick={() => navigate(`/results/${problem.id}`)}>View Results</button> {/* Updated line */}
+                            <button onClick={() => handleDelete(problem.id)}>Delete</button>
                         </div>
                     ))}
                 </div>
             </main>
 
-            <footer className="admin-footer">
-                footer: solveME stuff (legal, etc)
-            </footer>
         </div>
     );
 };
