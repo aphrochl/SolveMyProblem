@@ -59,9 +59,20 @@ const consumeCredits = async (req, res) => {
         );
 
         if (result.rows.length > 0) {
+            // Calculate the total available credits
+            const totalCredits = result.rows.reduce((acc, row) => acc + parseFloat(row.amount), 0);
+
+            // Check if the user is trying to use more credits than available
+            if (amountToUse > totalCredits) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Insufficient credits available to consume the requested amount.'
+                });
+            }
+
             let remainingAmountToUse = amountToUse;
 
-            // Loop through the valid credits
+            // Loop through the valid credits and deduct as needed
             for (const row of result.rows) {
                 const creditAmount = parseFloat(row.amount);
 
@@ -101,7 +112,6 @@ const consumeCredits = async (req, res) => {
         res.status(500).json({ success: false, message: 'Failed to consume credits' });
     }
 };
-
 
 const availableCredits = async (req, res) => {
     // const result1 = await pool.query(
