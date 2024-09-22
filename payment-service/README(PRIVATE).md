@@ -6,7 +6,7 @@ To run the new payment-service, you need to:
 
 ```sh
    ALTER TABLE payments ADD COLUMN expires_at TIMESTAMP WITHOUT TIME ZONE;
-```sh
+```
 
 (it adds a column called "expires_at" in the payments table so after running it, check that the column was added. the table should have 4 columns now.)
 
