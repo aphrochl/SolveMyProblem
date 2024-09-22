@@ -1,34 +1,29 @@
-import React, { useState, useEffect } from 'react'; // Import useState and useEffect
-import { useNavigate } from 'react-router-dom';
+import React from 'react'; // Import necessary React utilities
+import { useNavigate } from 'react-router-dom'; // For navigation
 import './LandingPage.css'; // Import CSS
 import logo from '../logo.png'; // Import the logo image
+import Footer from './Footer'; // Import Footer component
+import Header from './Header'; // Import Header component
 
+// Define the LandingPage component
 const LandingPage = () => {
-    const navigate = useNavigate(); // Use useNavigate to navigate
-    const [dateTime, setDateTime] = useState(new Date()); // Initialize state for date/time
-    const [systemHealth, setSystemHealth] = useState('Healthy'); // Simulate system health status
-
-    // Use useEffect to update date and time every second
-    useEffect(() => {
-        const interval = setInterval(() => setDateTime(new Date()), 1000); // Update time every second
-        return () => clearInterval(interval); // Cleanup interval on component unmount
-    }, []);
+    const navigate = useNavigate(); // Use useNavigate to handle navigation
 
     return (
         <div className="landing-page">
             <header className="landing-header">
-
+                <Header/>
                 {/* Buttons for Administrator and User */}
                 <div className="user-buttons">
-                    <button className="admin-button" onClick={() => navigate('/admin')}>Manage Problems</button>
-                    <button className="guest-button" onClick={() => navigate('/user')}>Buy Credits and Submit Problem</button>
-                </div>
-
-                <div className="system-info">
-                    <span>{`System info: ${dateTime.toLocaleString()}`}</span> {/* Display date and time */}
-                    <span>{`, System Health: ${systemHealth}`}</span> {/* Display system health */}
+                    <button className="admin-button" onClick={() => navigate('/admin')}>
+                        Manage Problems
+                    </button>
+                    <button className="guest-button" onClick={() => navigate('/user')}>
+                        Buy Credits and Submit Problem
+                    </button>
                 </div>
             </header>
+
             <div className="logo">
                 <img src={logo} alt="solveME Logo" style={{width: '70%'}}/> {/* Display the logo image */}
             </div>
@@ -38,7 +33,7 @@ const LandingPage = () => {
             </nav>
 
             <footer className="landing-footer">
-                footer: solveME stuff (legal, etc)
+                <Footer/>
             </footer>
         </div>
     );
