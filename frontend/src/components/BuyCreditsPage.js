@@ -1,78 +1,44 @@
-.buy-credits-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: linear-gradient(to right, #ccfed8, #9ec5f7);
-}
+// src/components/BuyCreditsPage.js
 
-.buy-credits-page header {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: linear-gradient(to right, #ccfed8, #9ec5f7);
-    z-index: 1000;
-    padding: 10px 0;
-    text-align: center;
-}
+import React, { useState } from 'react';
+import BuyCreditsForm from './BuyCreditsForm';
+import './BuyCreditsPage.css';
+import Footer from './Footer'; // Import Footer component
+import Header from './Header'; // Import Header component
 
-.buy-credits-page h1 {
-    margin-top: 80px;
-}
+const BuyCreditsPage = () => {
+    // Dummy data for balance and available credits
+    const [balance, setBalance] = useState(100);  // Initial balance
+    const [availableCredits, setAvailableCredits] = useState(50); // Available credits
+    const [newBalance, setNewBalance] = useState(balance); // Updated balance after purchasing credits
 
-.buy-credits-page form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
+    return (
+        <div className="buy-credits-page">
+            <Header/>
+            <h1>Buy Credits</h1>
 
-input[type="number"] {
-    padding: 8px;
-    width: 200px;
-    margin-bottom: 10px;
-}
+            <div className="info-box">
+                <div className="balance-info">
+                    <label>Balance:</label>
+                    <div className="balance-box">{balance}</div>
+                </div>
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #000000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
+                <div className="credits-info">
+                    <label>Available Credits:</label>
+                    <div className="credits-box">{availableCredits}</div>
+                </div>
+            </div>
 
-button:hover {
-    background-color: #000000;
-}
+            <BuyCreditsForm setNewBalance={setNewBalance} />
 
-.info-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+            <div className="new-balance-info">
+                <label>New Balance:</label>
+                <div className="new-balance-box">{newBalance}</div>
+            </div>
 
-.balance-info, .credits-info, .new-balance-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+            <Footer/>
+        </div>
+    );
+};
 
-.balance-box, .credits-box, .new-balance-box {
-    padding: 8px;
-    width: 100px;
-    text-align: center;
-    border: 1px solid #000;
-    background-color: #fff;
-    border-radius: 5px;
-}
-
-/* Adjust the margin for the new balance field to move it lower */
-.new-balance-info {
-    margin-top: 40px; /* Increase this value to move it further down */
-}
+export default BuyCreditsPage;
