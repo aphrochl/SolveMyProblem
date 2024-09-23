@@ -1,7 +1,8 @@
 // src/components/SubmitProblemPage.js
 import React, { useState } from 'react';
-import './SubmitProblemPage.css'; // Make sure to create and link this CSS file
-
+import './SubmitProblemPage.css';
+import Footer from './Footer';
+import Header from './Header';
 const SubmitProblemPage = () => {
     const [description, setDescription] = useState('');
     const [title, setTitle] = useState('');
@@ -26,13 +27,8 @@ const SubmitProblemPage = () => {
     return (
         <div className="submit-problem-page">
             <header className="header">
-                <div className="logo">solveME logo area (70%)</div>
-                <div className="system-info">system info: date/time, health...</div>
+                <Header/>
             </header>
-
-            <div className="status-info">
-                <span>status (username, company, account status, logout)</span>
-            </div>
 
             <main className="main-content">
                 <div className="solver-model-dropdown">
@@ -99,12 +95,11 @@ const SubmitProblemPage = () => {
                 </div>
 
                 <div className="message-area">
-                    <p>message area (scenario created successfully etc)</p>
                 </div>
             </main>
 
             <footer className="footer">
-                footer: solveME stuff (legal, etc)
+                <Footer/>
             </footer>
         </div>
     );
