@@ -36,7 +36,7 @@ const BuyCreditsForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             <label>
-                Amount:
+                Amount of Credits:
                 <input
                     type="number"
                     value={amount}
