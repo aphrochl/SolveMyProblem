@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './UserSubmissions.css';
+import Footer from './Footer'; // Import Footer component
+import Header from './Header'; // Import Header component
 
 const UserSubmissions = () => {
     const navigate = useNavigate();
@@ -25,14 +27,12 @@ const UserSubmissions = () => {
     return (
         <div className="user-submissions">
             <header className="submissions-header">
-                <div className="logo">solveME logo area (70%)</div>
-                <div className="system-info">system info: date/time, health...</div>
+                <Header/>
             </header>
 
             <button onClick={() => navigate('/buy-credits')}>Buy Credits</button>
 
             <main className="submissions-main">
-                <h2>My submissions</h2>
                 <div className="submissions-table">
                     {userSubmissions.map((submission) => (
                         <div className="submission-row" key={submission.id}>
@@ -50,7 +50,7 @@ const UserSubmissions = () => {
             </main>
 
             <footer className="submissions-footer">
-                footer: solveME stuff (legal, etc)
+                <Footer/>
             </footer>
         </div>
     );
