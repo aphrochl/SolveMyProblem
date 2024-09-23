@@ -7,28 +7,62 @@ const pool = new Pool({
     port: 5432,
 });
 
+
+// //og
+// const purchaseCredits = async (req, res) => {
+//     const { amount } = req.body;
+//
+//     try {
+//         const now = new Date();
+//
+//         // Adjust for your timezone (UTC+3)
+//         const timezoneOffset = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
+//         const localNow = new Date(now.getTime() + timezoneOffset);
+//         const expiresAt = new Date(localNow.getTime() + 60 * 1000); //600 * 1000=10 minutes
+//
+//         const result = await pool.query(
+//             'INSERT INTO payments (amount, purchased_at, expires_at) VALUES ($1, $2, $3) RETURNING *',
+//             [amount, localNow, expiresAt]
+//         );
+//
+//         res.json({ success: true, payment: result.rows[0] });
+//     } catch (error) {
+//         console.error('Error processing payment:', error);
+//         res.status(500).json({ success: false, message: 'Failed to process payment' });
+//     }
+// };
+
+let currentBalance = 100; // Set your initial balance here
+
 const purchaseCredits = async (req, res) => {
     const { amount } = req.body;
 
+    if (amount > currentBalance) {
+        return res.status(400).json({ success: false, message: 'Insufficient funds to purchase credits.' });
+    }
+
+    currentBalance -= amount; // Deduct from the current balance
+    const newBalance = currentBalance; // New balance after deduction
+
     try {
         const now = new Date();
-
-        // Adjust for your timezone (UTC+3)
-        const timezoneOffset = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
+        const timezoneOffset = 3 * 60 * 60 * 1000;
         const localNow = new Date(now.getTime() + timezoneOffset);
-        const expiresAt = new Date(localNow.getTime() + 1200 * 1000); //600 * 1000=10 minutes
+        const expiresAt = new Date(localNow.getTime() + 600 * 1000);
 
         const result = await pool.query(
             'INSERT INTO payments (amount, purchased_at, expires_at) VALUES ($1, $2, $3) RETURNING *',
             [amount, localNow, expiresAt]
         );
 
-        res.json({ success: true, payment: result.rows[0] });
+        res.json({ success: true, payment: result.rows[0], newBalance });
     } catch (error) {
         console.error('Error processing payment:', error);
         res.status(500).json({ success: false, message: 'Failed to process payment' });
     }
 };
+
+
 
 const checkCredits = async (req, res, next) => {
     try {
@@ -47,6 +81,7 @@ const checkCredits = async (req, res, next) => {
         res.status(500).json({ success: false, message: 'Failed to check credits' });
     }
 };
+
 
 
 const consumeCredits = async (req, res) => {
@@ -113,6 +148,7 @@ const consumeCredits = async (req, res) => {
     }
 };
 
+
 const availableCredits = async (req, res) => {
     // const result1 = await pool.query(
     //     'SELECT * FROM payments'
@@ -126,15 +162,16 @@ const availableCredits = async (req, res) => {
 
         if (result.rows.length > 0) {
             const totalCredits = result.rows.reduce((acc, row) => acc + parseFloat(row.amount), 0);
-            res.json({ success: true, totalAvailableCredits: totalCredits, credits: result.rows });
+            res.json({ success: true, totalAvailableCredits: totalCredits, credits: result.rows, currentBalance: currentBalance });
         } else {
-            res.json({ success: true, totalAvailableCredits: 0, credits: [] });
+            res.json({ success: true, totalAvailableCredits: 0, credits: [], currentBalance: currentBalance });
         }
     } catch (error) {
         console.error('Error checking available credits:', error);
         res.status(500).json({ success: false, message: 'Failed to check available credits' });
     }
 };
+
 
 const clearExpiredCredits = async (req, res) => {
     try {
