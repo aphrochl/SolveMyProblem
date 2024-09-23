@@ -1,20 +1,39 @@
-// src/components/BuyCreditsPage.js
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BuyCreditsForm from './BuyCreditsForm';
 import './BuyCreditsPage.css';
-import Footer from './Footer'; // Import Footer component
-import Header from './Header'; // Import Header component
+import Footer from './Footer';
+import Header from './Header';
 
 const BuyCreditsPage = () => {
-    // Dummy data for balance and available credits
-    const [balance, setBalance] = useState(100);  // Initial balance
-    const [availableCredits, setAvailableCredits] = useState(50); // Available credits
-    const [newBalance, setNewBalance] = useState(balance); // Updated balance after purchasing credits
+    const [balance, setBalance] = useState(0);  // Initial balance
+    const [availableCredits, setAvailableCredits] = useState(0); // Available credits
+    const [newBalance, setNewBalance] = useState(0); // Updated balance after purchasing credits
+
+    // Fetch current balance and available credits from backend on component mount
+    useEffect(() => {
+        const fetchAvailableCredits = async () => {
+            try {
+                const response = await fetch('http://localhost:3002/api/available-credits');  // Fetch from the backend
+                const data = await response.json();
+
+                if (data.success) {
+                    setBalance(data.currentBalance);  // Set the balance from backend
+                    setAvailableCredits(data.totalAvailableCredits);  // Set the available credits from backend
+                    setNewBalance(data.currentBalance);  // Initialize new balance as the current balance
+                } else {
+                    console.error('Failed to fetch available credits');
+                }
+            } catch (error) {
+                console.error('Error fetching available credits:', error);
+            }
+        };
+
+        fetchAvailableCredits();
+    }, []);
 
     return (
         <div className="buy-credits-page">
-            <Header/>
+            <Header />
             <h1>Buy Credits</h1>
 
             <div className="info-box">
@@ -31,12 +50,12 @@ const BuyCreditsPage = () => {
 
             <BuyCreditsForm setNewBalance={setNewBalance} />
 
-            <div className="new-balance-info">
-                <label>New Balance:</label>
-                <div className="new-balance-box">{newBalance}</div>
-            </div>
+            {/*<div className="new-balance-info">*/}
+            {/*    <label>New Balance:</label>*/}
+            {/*    <div className="new-balance-box">{newBalance}</div>*/}
+            {/*</div>*/}
 
-            <Footer/>
+            <Footer />
         </div>
     );
 };
