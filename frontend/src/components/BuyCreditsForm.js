@@ -1,36 +1,35 @@
-import React, { useState } from 'react';
-
-const getSessionId = () => {
-    return 'some-session-id';
-};
+import { useState } from 'react';
 
 const BuyCreditsForm = () => {
     const [amount, setAmount] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const sessionId = getSessionId();
 
         try {
+            // Assuming backend container is accessible via 'http://payment-service:3002'
             const response = await fetch('http://localhost:3002/api/purchase-credits', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ sessionId, amount }),
+                body: JSON.stringify({ amount }), // Just send amount
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok.');
+                const data = await response.json();
+                throw new Error(data.message || 'Network response was not ok.');
             }
 
-            console.log('Credits purchased successfully');
+            const data = await response.json();
+            setSuccessMessage(`Credits purchased successfully. New Balance: ${data.newBalance}`);
+            setAmount('');
 
         } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
+            setErrorMessage(error.message || 'There was a problem with the purchase operation.');
         }
-
-        setAmount('');
     };
 
     return (
@@ -45,6 +44,8 @@ const BuyCreditsForm = () => {
                 />
             </label>
             <button type="submit">Buy Credits</button>
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
         </form>
     );
 };
