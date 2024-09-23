@@ -55,7 +55,7 @@ def solve():
         cur = conn.cursor()
 
         # Fetch the 'model' and 'description' from the 'problems' table for the given problem_id
-        cur.execute('SELECT description FROM problems WHERE id = %s', problem_id)
+        cur.execute('SELECT description FROM problems WHERE id = %s', (problem_id,))
         problem = cur.fetchone()
 
         if problem is None:
