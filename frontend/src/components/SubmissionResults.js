@@ -2,7 +2,9 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './SubmissionResults.css'; // Θα προσθέσουμε στυλ σε αυτό το αρχείο αργότερα
+import './SubmissionResults.css';
+import Footer from './Footer';
+import Header from './Header';
 
 const SubmissionResults = () => {
     const navigate = useNavigate();
@@ -10,9 +12,7 @@ const SubmissionResults = () => {
     return (
         <div className="submission-results">
             <header className="results-header">
-                <div className="logo">solveME logo area (70%)</div>
-                <div className="info">user info: username, company, account status, logout</div>
-                <div className="system-info">system info: date/time, health...</div>
+                <Header/>
             </header>
 
             <main className="results-main">
@@ -61,6 +61,7 @@ const SubmissionResults = () => {
                 <button>Download Excel</button>
                 <button>Download Raw</button>
                 <button onClick={() => navigate(-1)}>Return</button> {/* Επιστροφή στην προηγούμενη σελίδα */}
+                <Footer/>
             </footer>
         </div>
     );
