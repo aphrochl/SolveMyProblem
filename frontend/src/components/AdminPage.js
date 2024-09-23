@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminPage.css';
+import Footer from './Footer';
+import Header from './Header';
 
 const AdminPage = () => {
-    const navigate = useNavigate(); // Use useNavigate to navigate
-    const [dateTime, setDateTime] = useState(new Date()); // Initialize state for date/time
-    const [systemHealth, setSystemHealth] = useState('Healthy'); // Simulate system health status
-    const [problems, setProblems] = useState([]);
-
-    // Use useEffect to update date and time every second
-    useEffect(() => {
-        const interval = setInterval(() => setDateTime(new Date()), 1000); // Update time every second
-        return () => clearInterval(interval); // Cleanup interval on component unmount
-    }, []);
+    const [problems, setProblems] = useState([]);  // Add useState for problems
+    const navigate = useNavigate();  // Initialize navigate
 
     // Fetch problems on component mount
     useEffect(() => {
@@ -20,7 +14,7 @@ const AdminPage = () => {
             try {
                 const response = await fetch('http://localhost:3007/problems'); // Ensure this port is correct
                 const data = await response.json();
-                setProblems(data);
+                setProblems(data);  // Update problems state
             } catch (error) {
                 console.error('Error fetching problems:', error);
             }
@@ -38,7 +32,7 @@ const AdminPage = () => {
                 });
                 const data = await response.json();
                 if (data.success) {
-                    setProblems(problems.filter(problem => problem.id !== id));
+                    setProblems(problems.filter(problem => problem.id !== id));  // Filter out deleted problem
                     alert('Problem deleted successfully');
                 } else {
                     throw new Error(data.message);
@@ -52,13 +46,7 @@ const AdminPage = () => {
 
     return (
         <div className="admin-page">
-            <header className="admin-header">
-                <div className="system-info">
-                    <span>{`System info: ${dateTime.toLocaleString()}`}</span> {/* Display date and time */}
-                    <span>{`, System Health: ${systemHealth}`}</span> {/* Display system health */}
-                </div>
-            </header>
-
+                    <Header />
             <button className="back-button" onClick={() => navigate(-1)}>Back</button>
 
             <main className="admin-main">
@@ -67,19 +55,19 @@ const AdminPage = () => {
                     {problems.map((problem) => (
                         <div className="activity-row" key={problem.id}>
                             <span>{problem.title || 'No Title'}</span>
-                            <span>{problem.creator || 'creator'}</span>
+                            <span>{problem.creator || 'Creator'}</span>
                             <span>{problem.description || 'No Description'}</span>
-                            <span>created on {new Date(problem.created_at).toLocaleDateString()}</span>
+                            <span>Created on {new Date(problem.created_at).toLocaleDateString()}</span>
                             <span>{problem.status || 'Status Unknown'}</span>
                             <button onClick={() => navigate(`/edit/${problem.id}`)}>View/Edit</button>
                             <button onClick={() => navigate(`/run/${problem.id}`)}>Run</button>
-                            <button onClick={() => navigate(`/results/${problem.id}`)}>View Results</button> {/* Updated line */}
+                            <button onClick={() => navigate(`/results/${problem.id}`)}>View Results</button>
                             <button onClick={() => handleDelete(problem.id)}>Delete</button>
                         </div>
                     ))}
                 </div>
             </main>
-
+            <Footer />
         </div>
     );
 };
