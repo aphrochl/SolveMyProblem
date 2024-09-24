@@ -46,7 +46,7 @@ const AdminPage = () => {
 
     return (
         <div className="admin-page">
-                    <Header />
+            <Header/>
             <button className="back-button" onClick={() => navigate(-1)}>Back</button>
 
             <main className="admin-main">
@@ -55,7 +55,7 @@ const AdminPage = () => {
                     {problems.map((problem) => (
                         <div className="activity-row" key={problem.id}>
                             <span>{problem.title || 'No Title'}</span>
-                            <span>{problem.creator || 'Creator'}</span>
+                            <span>{problem.user || 'Creator'}</span>
                             <span>{problem.description || 'No Description'}</span>
                             <span>Created on {new Date(problem.created_at).toLocaleDateString()}</span>
                             <span>{problem.status || 'Status Unknown'}</span>
@@ -67,7 +67,7 @@ const AdminPage = () => {
                     ))}
                 </div>
             </main>
-            <Footer />
+            <Footer/>
         </div>
     );
 };
