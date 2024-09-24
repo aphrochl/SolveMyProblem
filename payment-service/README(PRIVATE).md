@@ -38,3 +38,9 @@ Invoke-RestMethod -Uri http://localhost:3002/api/consume-credits -Method POST -H
 ```sh
 Invoke-RestMethod -Uri http://localhost:3002/api/available-credits -Method GET -Headers @{"Content-Type"="application/json"}
    
+
+
+
+```
+Invoke-RestMethod -Uri "http://localhost:5000/solve?problem_id=123" -Method GET -Headers @{"Content-Type"="application/json"}
+```
