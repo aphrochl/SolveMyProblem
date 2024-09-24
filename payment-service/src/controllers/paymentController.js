@@ -32,6 +32,7 @@ const pool = new Pool({
 //     }
 // };
 
+// let oldBalance = 100;
 let currentBalance = 100; // Set your initial balance here
 
 const purchaseCredits = async (req, res) => {
@@ -41,6 +42,7 @@ const purchaseCredits = async (req, res) => {
         return res.status(400).json({ success: false, message: 'Insufficient funds to purchase credits.' });
     }
 
+    // oldBalance = currentBalance;
     currentBalance -= amount; // Deduct from the current balance
     const newBalance = currentBalance; // New balance after deduction
 
@@ -48,7 +50,7 @@ const purchaseCredits = async (req, res) => {
         const now = new Date();
         const timezoneOffset = 3 * 60 * 60 * 1000;
         const localNow = new Date(now.getTime() + timezoneOffset);
-        const expiresAt = new Date(localNow.getTime() + 600 * 1000);
+        const expiresAt = new Date(localNow.getTime() + 3600 * 1000);
 
         const result = await pool.query(
             'INSERT INTO payments (amount, purchased_at, expires_at) VALUES ($1, $2, $3) RETURNING *',
