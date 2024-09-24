@@ -4,11 +4,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start; /* Change to flex-start to keep header/footer in place */
     background: linear-gradient(to right, #ccfed8, #9ec5f7);
     height: 100vh;
     padding: 0;
     margin: 0;
+    overflow: hidden; /* Prevents overflow from affecting the body */
 }
 
 .admin-header {
@@ -51,6 +52,7 @@
     flex: 1;
     width: 100%;
     padding: 20px;
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .activity-table {
