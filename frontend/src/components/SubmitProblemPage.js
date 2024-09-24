@@ -16,7 +16,7 @@ const SubmitProblemPage = () => {
             const response = await fetch('http://localhost:3003/problems/submit-problem', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ description, title, user, input })
+                body: JSON.stringify({ description, title, user, input_data: input })
             });
             if (!response.ok) throw new Error('Problem submission failed');
             console.log('Problem submitted successfully');
