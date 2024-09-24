@@ -35,8 +35,8 @@ def linearSolver(description): # Description as JSON
     y = solver.NumVar(ylb, yub, "y")
 
     # The problem solution will be returned as a string
-    Solution = ""
-    Solution += f"Number of variables = {solver.NumVariables()}\n"
+    SolutionLog = ""
+    SolutionLog += f"Number of variables = {solver.NumVariables()}\n"
 
     # Constraint 0:
     C0 = description["constraints"]["C0"] # This is a dictionary of Constraint 0
@@ -90,7 +90,7 @@ def linearSolver(description): # Description as JSON
     else: 
         return "Error, incorrect comparison."
 
-    Solution += f"Number of constraints = {solver.NumConstraints()}\n"
+    SolutionLog += f"Number of constraints = {solver.NumConstraints()}\n"
 
     # Objective function:
     objXCoeff = description["objective"]["x"]
@@ -103,19 +103,31 @@ def linearSolver(description): # Description as JSON
         return "Error, objective must be 'Minimized' or 'Maximized'."
 
     # Solve the system.
-    Solution += f"Solving with {solver.SolverVersion()}\n"
+    SolutionLog += f"Solving with {solver.SolverVersion()}\n"
     status = solver.Solve()
 
     if status == pywraplp.Solver.OPTIMAL:
-        Solution += "Solution:\n"
-        Solution += f"Objective value = {solver.Objective().Value():0.1f}\n"
-        Solution += f"x = {x.solution_value():0.1f}\n"
-        Solution += f"y = {y.solution_value():0.1f}\n"
+        SolutionLog += "Solution:\n"
+        SolutionLog += f"Objective value = {solver.Objective().Value():0.1f}\n"
+        SolutionLog += f"x = {x.solution_value():0.1f}\n"
+        SolutionLog += f"y = {y.solution_value():0.1f}\n"
     else:
-        Solution += "The problem does not have an optimal solution.\n"
+        SolutionLog += "The problem does not have an optimal solution.\n"
 
-    Solution += "\nAdvanced usage:\n"
-    Solution += f"Problem solved in {solver.wall_time():d} milliseconds\n"
-    Solution += f"Problem solved in {solver.iterations():d} iterations\n"
+    SolutionLog += "\nAdvanced usage:\n"
+    SolutionLog += f"Problem solved in {solver.wall_time():d} milliseconds\n"
+    SolutionLog += f"Problem solved in {solver.iterations():d} iterations\n"
 
-    return Solution
+    SolutionData = {
+        "Solver" : solver.SolverVersion(),
+        "ObjectiveValue" : solver.Objective().Value(),
+        "XValue" : x.solution_value(),
+        "YValue" : y.solution_value(),
+        "Time" : solver.wall_time(),
+        "Iterations" : solver.Iterations(),
+    }
+
+    return {
+        "SolutionLog" : SolutionLog,
+        "SolutionData" : SolutionData
+    }

@@ -15,19 +15,29 @@ def knapsackSolver(description): # Description as JSON
     solver.init(values, weights, capacities)
     computed_value = solver.solve()
 
-    Solution = ""
+    SolutionLog = "" # The log of the process
 
     packed_items = []
     packed_weights = []
     total_weight = 0
-    Solution += f"Total value = {computed_value}\n"
+    SolutionLog += f"Total value = {computed_value}\n"
     for i in range(len(values)):
         if solver.best_solution_contains(i):
             packed_items.append(i)
             packed_weights.append(weights[0][i])
             total_weight += weights[0][i]
-    Solution += f"Total weight: {total_weight}\n"
-    Solution += f"Packed items: {packed_items}\n"
-    Solution += f"Packed_weights: {packed_weights}\n"
+    SolutionLog += f"Total weight: {total_weight}\n"
+    SolutionLog += f"Packed items: {packed_items}\n"
+    SolutionLog += f"Packed_weights: {packed_weights}\n"
 
-    return Solution # Print the log of the process
+    SolutionData = {
+        "Total Value": computed_value,
+        "Total Weight": total_weight,
+        "Packed Items": packed_items,
+        "Packed Weights": packed_weights,
+    }
+
+    return {
+        "SolutionLog": SolutionLog,
+        "SolutionData": SolutionData,
+    }

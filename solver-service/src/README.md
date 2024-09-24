@@ -26,6 +26,6 @@ The "description" are the problem variables for each problem.
 
 ## Linear Optimization
 
-Data format should be something like [this](./data.json)
+Data format should be something like [this](./linearData.json)
 
 The Solver will return a __log__ of the process with the result in __string format__.

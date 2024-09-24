@@ -45,25 +45,59 @@ def multipleKnapsackSolver(description):
     solver = cp_model.CpSolver()
     status = solver.solve(model)
 
-    Solution = ""
+    SolutionLog = ""
+    SolutionData = {
+        "Total value": None,
+        "Total weight": 0,
+        "Bins" : []
+    }
 
     if status == cp_model.OPTIMAL:
-        Solution += f"Total packed value: {solver.objective_value}\n"
+        total_value = solver.objective_value
+        SolutionLog += f"Total packed value: {total_value}\n"
         total_weight = 0
+        SolutionData["Total value"] = total_value
         for b in all_bins:
-            Solution += f"Bin {b}\n"
+            SolutionLog += f"Bin {b}\n"
             bin_weight = 0
             bin_value = 0
+            bin_items = []
             for i in all_items:
                 if solver.value(x[i, b]) > 0:
-                    Solution += f'Item:{i} weight:{data["weights"][i]} value:{data["values"][i]}\n'
+                    item_weight = data["weights"][i]
+                    item_value = data["values"][i]
+
+                    SolutionLog += f'Item:{i} weight:{item_weight} value:{item_value}\n'
                     bin_weight += data["weights"][i]
                     bin_value += data["values"][i]
-            Solution += f"Packed bin weight: {bin_weight}\n"
-            Solution += f"Packed bin value: {bin_value}\n\n"
-            total_weight += bin_weight
-        Solution += f"Total packed weight: {total_weight}\n"
-    else:
-        Solution += "The problem does not have an optimal solution.\n"
 
-    return Solution
+                    bin_items.append({
+                        "Item ID" : i,
+                        "weight" : item_weight,
+                        "value" : item_value
+                    })
+
+            SolutionLog += f"Packed bin weight: {bin_weight}\n"
+            SolutionLog += f"Packed bin value: {bin_value}\n\n"
+
+            # Append bin information to SolutionData
+            SolutionData["Bins"].append({
+                "Bin ID": b,
+                "Bin weight": bin_weight,
+                "Bin value": bin_value,
+                "Items": bin_items
+            })
+
+            total_weight += bin_weight
+
+        SolutionLog += f"Total packed weight: {total_weight}\n"
+        SolutionData["Total weight"] = total_weight  # Save total weight to SolutionData
+    else:
+        SolutionLog += "The problem does not have an optimal solution.\n"
+        SolutionData["Message"] = "No optimal solution found"
+
+
+    return {
+        "SolutionLog": SolutionLog,
+        "SolutionData": SolutionData
+    }

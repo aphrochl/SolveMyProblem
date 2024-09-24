@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from flask import Flask, jsonify, request
 from dotenv import load_dotenv
 import psycopg2
@@ -55,25 +57,56 @@ def solve():
         cur = conn.cursor()
 
         # Fetch the 'model' and 'description' from the 'problems' table for the given problem_id
-        cur.execute('SELECT description FROM problems WHERE id = %s', (problem_id,))
+        cur.execute('SELECT * FROM problems WHERE id = %s', (problem_id,))
         problem = cur.fetchone()
 
         if problem is None:
             return jsonify({"error": f"No problem found with id {problem_id}"}), 404
 
-        details = json.loads(problem[0])  # Unpack the fetched result
-        model = details['model']
-        description = details['description']
+        problem_id, description, status, created_at, title, user, solved_at, input_data, results = problem # Unpack the fetched result
+
+        problem_details = { # Turn result into dictionary
+            "id": problem_id,
+            "description": description,
+            "status": status,
+            "created_at" : created_at,
+            "title" : title,
+            "user" : user,
+            "solved_at" : solved_at,
+            "input_data" : input_data,
+            "results" : results, # Unpack details
+        }
+
+        details = json.loads(problem_details["input_data"])
+        model = details['model'] # Model to be used
+        description = details['description'] # Data for the solver
 
         # Call the solver function with the model and description
         solution = solver(model, description)
+
+        cur.execute('UPDATE problems SET status = %s, results = %s, solved_at = %s WHERE id = %s', ('Solved', json.dumps(solution), datetime.now() + timedelta(hours=3), problem_id,))
+        conn.commit()
+
+        result = {
+            "metadata" : {
+                "user" : user,
+                "created_at" : created_at,
+                "solved_at" : datetime.now() + timedelta(hours=3),
+            },
+            "data" : {
+                "title" : title,
+                "description" : problem_details["description"],
+                "input_data" : json.loads(input_data),
+            },
+            "solution" : solution
+        }
 
         # Close the database connection
         cur.close()
         conn.close()
 
         # Return the solution as JSON
-        return jsonify({"solution": solution})
+        return jsonify({"result": result})
 
     except Exception as e:
         # Log the error or handle it as needed

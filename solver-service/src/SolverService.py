@@ -12,4 +12,7 @@ def solver(model, description):
     elif model == "MultipleKnapsackSolver":
         print("MultipleKnapsackSolver")
         return multipleKnapsackSolver(description)
-    return "null"
+    return {
+        "SolutionLog" : "null",
+        "SolutionData" : "null",
+    }
