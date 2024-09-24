@@ -40,8 +40,9 @@ const SubmitProblemPage = () => {
                     <label>Solver Model</label>
                     <select>
                         {/* Populate with options as needed */}
-                        <option>Model 1</option>
-                        <option>Model 2</option>
+                        <option>Linear Optimization</option>
+                        <option>Knapsack</option>
+                        <option>Multiple Knapsacks</option>
                     </select>
                 </div>
 
