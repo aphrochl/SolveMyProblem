@@ -25,23 +25,45 @@ const AdminPage = () => {
 
     // Handle problem deletion
     const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this problem?')) {
-            try {
+        try {
                 const response = await fetch(`http://localhost:3003/problems/delete-problem/${id}`, { // Ensure this port is correct
                     method: 'DELETE',
                 });
                 const data = await response.json();
                 if (data.success) {
-                    setProblems(problems.filter(problem => problem.id !== id));  // Filter out deleted problem
-                    alert('Problem deleted successfully');
+                    alert('Problem solved successfully');
                 } else {
                     throw new Error(data.message);
                 }
             } catch (error) {
-                console.error('Error deleting problem:', error);
-                alert('Failed to delete problem');
+                console.error('Error solving problem:', error);
+                alert('Failed to solve problem');
             }
-        }
+    };
+
+    // Handle solver
+    const handleSolver = async (id) => {
+        try {
+                const response = await fetch(`http://localhost:5000/solve?problem_id=${id}`, { // Ensure this port is correct
+                    method: 'GET',
+                    headers: {
+                'Content-Type': 'application/json' // Set content type to JSON
+            }
+                });
+                if(!response.ok) {
+                    throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                }
+
+                // Parse the JSON response
+        const data = await response.json();
+
+        // Handle the result
+        console.log('Problem solved:', data);
+        return data;  // Return the data if needed for further processing
+            } catch (error) {
+                console.error('Error solving problem:', error);
+                alert('Failed to solve problem');
+            }
     };
 
     return (
@@ -60,7 +82,7 @@ const AdminPage = () => {
                             <span>Created on {new Date(problem.created_at).toLocaleDateString()}</span>
                             <span>{problem.status || 'Status Unknown'}</span>
                             <button onClick={() => navigate(`/edit/${problem.id}`)}>View/Edit</button>
-                            <button onClick={() => navigate(`/run/${problem.id}`)}>Run</button>
+                            <button onClick={() => handleSolver(problem.id)}>Run</button>
                             <button onClick={() => navigate(`/results/${problem.id}`)}>View Results</button>
                             <button onClick={() => handleDelete(problem.id)}>Delete</button>
                         </div>

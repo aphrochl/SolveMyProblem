@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from dotenv import load_dotenv
 import psycopg2
 import os
@@ -8,6 +9,7 @@ import json
 from SolverService import solver
 
 app = Flask(__name__)
+CORS(app)
 
 load_dotenv()
 
@@ -83,8 +85,8 @@ def solve():
 
         # Call the solver function with the model and description
         solution = solver(model, description)
-
-        cur.execute('UPDATE problems SET solved_at = %s WHERE id = %s', (datetime.now() + timedelta(hours=3), problem_id))
+        solved_at = datetime.now() + timedelta(hours=3)
+        cur.execute('UPDATE problems SET solved_at = %s WHERE id = %s', (solved_at, problem_id))
         conn.commit()
 
         result = {
@@ -109,7 +111,7 @@ def solve():
         conn.close()
 
         # Return the solution as JSON
-        return jsonify({"result": result})
+        return jsonify({"result": result, "success": True}), 200
 
     except Exception as e:
         # Log the error or handle it as needed
