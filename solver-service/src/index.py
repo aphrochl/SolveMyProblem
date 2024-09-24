@@ -84,14 +84,14 @@ def solve():
         # Call the solver function with the model and description
         solution = solver(model, description)
 
-        cur.execute('UPDATE problems SET status = %s, results = %s, solved_at = %s WHERE id = %s', ('Solved', json.dumps(solution), datetime.now() + timedelta(hours=3), problem_id,))
+        cur.execute('UPDATE problems SET solved_at = %s WHERE id = %s', (datetime.now() + timedelta(hours=3), problem_id))
         conn.commit()
 
         result = {
             "metadata" : {
                 "user" : user,
-                "created_at" : created_at,
-                "solved_at" : datetime.now() + timedelta(hours=3),
+                "created_at" : created_at.strftime("%Y-%m-%d %H:%M:%S"),
+                "solved_at" : solved_at.strftime("%Y-%m-%d %H:%M:%S"),
             },
             "data" : {
                 "title" : title,
@@ -100,6 +100,9 @@ def solve():
             },
             "solution" : solution
         }
+
+        cur.execute('UPDATE problems SET status = %s, results = %s WHERE id = %s', ('Solved', json.dumps(result), problem_id,))
+        conn.commit()
 
         # Close the database connection
         cur.close()
