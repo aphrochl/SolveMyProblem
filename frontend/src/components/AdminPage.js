@@ -27,7 +27,7 @@ const AdminPage = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this problem?')) {
             try {
-                const response = await fetch(`http://localhost:3007/problems/delete-problem/${id}`, { // Ensure this port is correct
+                const response = await fetch(`http://localhost:3003/problems/delete-problem/${id}`, { // Ensure this port is correct
                     method: 'DELETE',
                 });
                 const data = await response.json();
