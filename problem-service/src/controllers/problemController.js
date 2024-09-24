@@ -15,7 +15,7 @@ const submitProblem = async (req, res) => {
         // Insert the new problem into the database
         const result = await pool.query(
             'INSERT INTO problems (description, title, status, created_at, "user", input_data) VALUES ($1, $2, $3, NOW(), $4, $5) RETURNING *',
-            [description, title, 'pending', user, input_data]
+            [description, title, 'Pending', user, input_data]
         );
 
         // Respond with the newly created problem
