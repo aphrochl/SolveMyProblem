@@ -11,6 +11,7 @@ import SubmitProblemForm from './components/SubmitProblemForm';
 import ManageSolutions from './components/ManageSolutions';
 import ProblemsList from './components/ProblemsList';
 import Statistics from './components/Statistics';
+import ViewPage from './components/ViewPage';
 
 const App = () => {
     return (
@@ -24,6 +25,7 @@ const App = () => {
                     <Route path="/buy-credits" element={<BuyCreditsPage />} />
                     <Route path="/submit-problem" element={<SubmitProblemPage />} />
                     <Route path="/application" element={<Application />} />
+                    <Route path="/edit/:id" element={<ViewPage />} />
                 </Routes>
             </div>
         </Router>
