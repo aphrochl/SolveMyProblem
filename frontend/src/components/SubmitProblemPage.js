@@ -9,23 +9,45 @@ const SubmitProblemPage = () => {
     const [title, setTitle] = useState('');
     const [user, setUser] = useState('');
     const [input, setInput] = useState('');
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [successMessage, setSuccessMessage] = useState(null);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setErrorMessage(null);
+        setSuccessMessage(null);
+
+        // Step 1: Consume a credit
         try {
+            const consumeResponse = await fetch('http://localhost:3002/api/consume-credits', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amountToUse: 1 }), // Consume one credit
+            });
+
+            if (!consumeResponse.ok) {
+                const errorData = await consumeResponse.json();
+                throw new Error(errorData.message || 'Failed to consume credits.');
+            }
+
+            // Step 2: Submit the problem if credit consumption was successful
             const response = await fetch('http://localhost:3003/problems/submit-problem', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ description, title, user, input_data: input })
             });
+
             if (!response.ok) throw new Error('Problem submission failed');
-            console.log('Problem submitted successfully');
+
+            setSuccessMessage('Problem submitted successfully.');
+            // Clear the form fields
             setDescription('');
             setTitle('');
             setUser('');
             setInput('');
         } catch (error) {
             console.error('Error:', error);
+            setErrorMessage(error.message);
         }
     };
 
@@ -124,7 +146,8 @@ const SubmitProblemPage = () => {
                 </div>
 
                 <div className="message-area">
-                    {/* Display any success or error messages here */}
+                    {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                    {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
                 </div>
             </main>
 
