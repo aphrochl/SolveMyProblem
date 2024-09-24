@@ -24,7 +24,12 @@ const BuyCreditsForm = () => {
             }
 
             const data = await response.json();
-            setSuccessMessage(`Credits purchased successfully. New Balance: ${data.newBalance}`);
+            setSuccessMessage(
+                <>
+                    Credits purchased successfully. New Balance: ${data.newBalance}.<br />
+                    <span style={{ display: 'block', textAlign: 'center' }}>Credits expire in 1 hour.</span>
+                </>
+            );
             setAmount('');
 
         } catch (error) {
@@ -33,20 +38,22 @@ const BuyCreditsForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Amount of Credits:
-                <input
-                    type="number"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Buy Credits</button>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-            {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
-        </form>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
+                <label>
+                    Amount of Credits:
+                    <input
+                        type="number"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        required
+                    />
+                </label>
+                <button type="submit">Buy Credits</button>
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+            </form>
+        </div>
     );
 };
 
