@@ -78,24 +78,27 @@ const SubmitProblemPage = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* Replace with dynamic content as needed */}
-                            <tr>
-                                <td>1</td>
-                                <td>Model Title 1</td>
-                                <td>Notes 1</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Model Title 2</td>
-                                <td>Notes 2</td>
-                            </tr>
+                        {/* Replace with dynamic content as needed */}
+                        <tr>
+                            <td>1</td>
+                            <td>Linear optimization</td>
+                            <td>Linear optimization (or linear programming) is the name given to computing the best solution to a problem modeled as a set of linear relationships. </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Knapsack</td>
+                            <td>In the knapsack problem, you need to pack a set of items, with given values and sizes (such as weights or volumes), into a container with a maximum capacity. If the total size of the items exceeds the capacity, you can't pack them all. </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Multiple Knapsacks</td>
+                            <td>In the multiple knapsacks problem, you need to pack a set of items, with given values and sizes (such as weights or volumes), into a container with a maximum capacity.  If the total size of the items exceeds the capacity, you can't pack them all. </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div className="new-submission-section">
-                    <h3>New Problem Submission for &lt;model&gt;</h3>
-                    <button className="upload-button">Upload Submission Metadata</button>
 
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
