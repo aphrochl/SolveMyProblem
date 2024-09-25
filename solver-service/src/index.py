@@ -1,3 +1,4 @@
+import time
 from datetime import datetime, timedelta
 
 from flask import Flask, jsonify, request
@@ -7,6 +8,7 @@ import psycopg2
 import os
 import json
 from SolverService import solver
+from sourceTracker import getSourcesStats
 
 app = Flask(__name__)
 CORS(app)
@@ -83,8 +85,16 @@ def solve():
         model = details['model'] # Model to be used
         description = details['description'] # Data for the solver
 
+        # Start the timer to calculate time taken for solution
+        start_time = time.time()
+
         # Call the solver function with the model and description
         solution = solver(model, description)
+
+        # End timer
+        end_time = time.time()
+        time_taken = end_time - start_time
+
         solved_at = datetime.now() + timedelta(hours=3)
         cur.execute('UPDATE problems SET solved_at = %s WHERE id = %s', (solved_at, problem_id))
         conn.commit()
@@ -103,7 +113,13 @@ def solve():
             "solution" : solution
         }
 
+        # Fetch CPU usage stats
+        sourceStatistics = getSourcesStats()
+
         cur.execute('UPDATE problems SET status = %s, results = %s WHERE id = %s', ('Solved', json.dumps(result), problem_id,))
+        conn.commit()
+
+        cur.execute('INSERT INTO statistics (problem_id, processing_time, created_at) VALUES (%s, %s, %s) ',(problem_id, time_taken, created_at))
         conn.commit()
 
         # Close the database connection
@@ -111,7 +127,7 @@ def solve():
         conn.close()
 
         # Return the solution as JSON
-        return jsonify({"result": result, "success": True}), 200
+        return jsonify({"result": result, "success": True, "sourceStatistics" : sourceStatistics}), 200
 
     except Exception as e:
         # Log the error or handle it as needed

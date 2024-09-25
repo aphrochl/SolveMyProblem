@@ -30,6 +30,8 @@ services:
       context: ./solver-service
     ports:
       - "5000:5000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Mount Docker socket to allow SDK access
     networks:
       - solveMyProblemNetwork
 
@@ -66,8 +68,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_HOST: host.docker.internal
       POSTGRES_DB: mydatabase
-      POSTGRES_PASSWORD: 2372002
-      POSTGRES_PORT: 5433
+      POSTGRES_PASSWORD: 123
+      POSTGRES_PORT: 5432
     networks:
       - solveMyProblemNetwork
 

@@ -1,17 +1,17 @@
-from LinearOptimization import linearSolver
-from Knapsack import knapsackSolver
-from MultipleKnapsacks import multipleKnapsackSolver
+from solvers import LinearOptimization as ls
+from solvers import Knapsack as ks
+from solvers import MultipleKnapsacks as mks
 
 def solver(model, description):
     if model == "LinearSolver":
         print("LinearSolver")
-        return linearSolver(description)
+        return ls.linearSolver(description)
     elif model == "KnapsackSolver":
         print("KnapsackSolver")
-        return knapsackSolver(description)
+        return ks.knapsackSolver(description)
     elif model == "MultipleKnapsackSolver":
         print("MultipleKnapsackSolver")
-        return multipleKnapsackSolver(description)
+        return mks.multipleKnapsackSolver(description)
     return {
         "SolutionLog" : "null",
         "SolutionData" : "null",

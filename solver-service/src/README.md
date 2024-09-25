@@ -1,7 +1,7 @@
 # Base Idea:
 
 Problems will be based on these categories:
-- [Linear optimization](LinearOptimization.py)
+- [Linear optimization](solvers/LinearOptimization.py)
 - Packing
 
 Each Category will be accessed by a *seperate* Python script.
@@ -26,6 +26,6 @@ The "description" are the problem variables for each problem.
 
 ## Linear Optimization
 
-Data format should be something like [this](./linearData.json)
+Data format should be something like [this](../../testing/input/linearData.json)
 
 The Solver will return a __log__ of the process with the result in __string format__.
