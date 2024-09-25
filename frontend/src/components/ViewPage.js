@@ -53,45 +53,81 @@ const ViewPage = () => {
         URL.revokeObjectURL(url);
     };
 
+    // Function to handle file upload
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            // Read the file content as text
+            reader.onload = (e) => {
+                try {
+                    const uploadedData = JSON.parse(e.target.result);
+                    setInputData(uploadedData); // Update inputData state with uploaded data
+                } catch (error) {
+                    console.error('Error parsing JSON:', error);
+                    alert('Failed to upload. Please ensure the file is a valid JSON.');
+                }
+            };
+
+            reader.readAsText(file);
+        }
+    };
+
+    // Function to trigger file input click
+    const triggerFileInput = () => {
+        document.getElementById('file-input').click();
+    };
+
     return (
         <div className="view-page">
-            <Header />
+            <Header/>
 
             {/* Metadata Section */}
             <div className="metadata-section">
                 <h2><strong>Metadata</strong></h2>
                 <table className="metadata-table">
                     <thead>
-                        <tr>
-                            <th>Created at</th>
-                            <th>Solved at</th>
-                            <th>User</th>
-                        </tr>
+                    <tr>
+                        <th>Created at</th>
+                        <th>Solved at</th>
+                        <th>User</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>{metadata.created_at}</td>
-                            <td>{metadata.solved_at}</td>
-                            <td>{metadata.user}</td>
-                        </tr>
+                    <tr>
+                        <td>{metadata.created_at}</td>
+                        <td>{metadata.solved_at}</td>
+                        <td>{metadata.user}</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
 
-            {/* Input Data Section */}
             <div className="input-data-section">
                 <div className="input-row">
                     <div className="dataset-details">
                         <p><strong>Input Data:</strong></p>
-                        {/* Display the input data */}
-                        <pre>{inputData}</pre>
+                        {/* Display the input data with proper formatting and container styles */}
+                        <pre className="json-display">{JSON.stringify(inputData, null, 2)}</pre>
                     </div>
                     <div className="action-buttons">
-                        <button>Upload</button>
-                        <button onClick={handleDownload}>Download</button> {/* Trigger the download on click */}
+                        <button onClick={triggerFileInput}>Upload</button>
+                        <button onClick={handleDownload}>Download</button>
+                        {/* Trigger the download on click */}
+                        {/* Hidden file input for upload */}
+                        <input
+                            type="file"
+                            id="file-input"
+                            style={{display: 'none'}}
+                            accept=".json"
+                            onChange={handleFileUpload}
+                        />
                     </div>
                 </div>
             </div>
+
 
             {/* Done Button */}
             <div className="done-button-section">
@@ -99,7 +135,7 @@ const ViewPage = () => {
             </div>
 
             {/* Footer */}
-            <Footer />
+            <Footer/>
         </div>
     );
 };
