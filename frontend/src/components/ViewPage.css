@@ -125,4 +125,21 @@
     word-wrap: break-word; /* Ensure long words or lines are wrapped */
     font-family: 'Courier New', Courier, monospace; /* Use a monospaced font */
 }
+.action-buttons {
+    display: flex;
+    justify-content: center; /* Center buttons */
+    gap: 10px; /* Add spacing between buttons */
+}
 
+.save-button {
+    background-color: #444444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #222222;
+}
