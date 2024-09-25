@@ -4,47 +4,10 @@
     align-items: center;
     justify-content: flex-start;
     background: linear-gradient(to right, #ccfed8, #9ec5f7);
-    height: 100vh;
+    min-height: 100vh; /* Set minimum height to make the page take up the full height */
     padding: 0;
     margin: 0;
-    overflow: hidden;
-}
-
-.top-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(to right, #ccfed8, #9ec5f7);
-}
-
-.logo-area {
-    width: 70%;
-    background: linear-gradient(to right, #ccfed8, #9ec5f7);
-    padding: 20px;
-    text-align: center;
-}
-
-.status-info {
-    width: 30%;
-    text-align: right;
-}
-
-.scenario-details {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(to right, #ccfed8, #9ec5f7);
-    border-bottom: 1px solid #ccc;
-}
-
-.scenario-details p {
-    margin: 0;
-    padding: 0 10px;
-    font-size: 14px;
-    color: #333;
+    overflow-y: auto; /* Allow the whole page to be scrollable */
 }
 
 .metadata-section {
@@ -54,8 +17,9 @@
     padding: 20px;
     background: linear-gradient(to right, #ccfed8, #9ec5f7);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-    overflow-y: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    /* Removed overflow-y property to prevent independent scrolling */
+    overflow: visible; /* Ensure content is fully visible */
 }
 
 .metadata-table {
@@ -85,8 +49,7 @@
     margin-bottom: 20px;
 }
 
-
-/* Flex layout for the input data rows */
+/* Ensure the rest of the page is scrollable */
 .input-data-section {
     flex: 1;
     width: 100%;
@@ -127,22 +90,6 @@
 
 .action-buttons button:hover {
     background-color: #222222;
-}
-
-/* Back button styles */
-.back-button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #000000;
-    color: white;
-    border: none;
-    border-radius: 4px;
-}
-
-.back-button:hover {
-    background-color: #444444;
 }
 
 /* Done button styles */
