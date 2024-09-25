@@ -1,11 +1,32 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import './ViewPage.css';
 import Header from './Header';
 import Footer from './Footer';
 
 const ViewPage = () => {
-    const navigate = useNavigate(); // Initialize navigate
+    const [metadata, setMetadata] = useState({ created_at: '', solved_at: '', user: '' }); // State for metadata
+    const navigate = useNavigate();
+    const { id } = useParams(); // Get the problem ID from the URL
+
+    useEffect(() => {
+        const fetchMetadata = async () => {
+            try {
+                const response = await fetch(`http://localhost:3003/problems/${id}/view`); // Adjust URL as needed
+                const data = await response.json();
+
+                if (data.success) {
+                    setMetadata(data.metadata); // Update state with metadata
+                } else {
+                    alert(data.message); // Handle errors appropriately
+                }
+            } catch (error) {
+                console.error('Error fetching metadata:', error);
+            }
+        };
+
+        fetchMetadata(); // Call the function to fetch metadata
+    }, [id]); // Dependency array includes id
 
     return (
         <div className="view-page">
@@ -24,9 +45,9 @@ const ViewPage = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{/* Insert Created at value here */}</td>
-                            <td>{/* Insert Solved at value here */}</td>
-                            <td>{/* Insert User value here */}</td>
+                            <td>{metadata.created_at}</td>
+                            <td>{metadata.solved_at}</td>
+                            <td>{metadata.user}</td>
                         </tr>
                     </tbody>
                 </table>
