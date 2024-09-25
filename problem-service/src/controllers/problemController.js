@@ -55,18 +55,16 @@ const getView = async (req, res) => {
     }
 
     try {
-        // Query to fetch the input data, created_at, solved_at, and user for the specific problem ID
+        // Format both created_at and solved_at using PostgreSQL's to_char function
         const result = await pool.query(
-            'SELECT input_data, created_at, solved_at, "user" FROM problems WHERE id = $1',
+            'SELECT input_data, to_char(created_at, \'YYYY-MM-DD HH24:MI:SS\') AS created_at, to_char(solved_at, \'YYYY-MM-DD HH24:MI:SS\') AS solved_at, "user" FROM problems WHERE id = $1',
             [id]
         );
 
-        // Check if the problem exists
         if (result.rows.length === 0) {
             return res.status(404).json({ success: false, message: 'Problem not found' });
         }
 
-        // Extract the data from the result
         const { input_data, created_at, solved_at, user } = result.rows[0];
 
         // Create the metadata object
@@ -83,6 +81,7 @@ const getView = async (req, res) => {
         res.status(500).json({ success: false, message: 'Failed to retrieve results' });
     }
 };
+
 
 
 
