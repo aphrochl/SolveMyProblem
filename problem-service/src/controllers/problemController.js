@@ -3,10 +3,9 @@ const pool = new Pool({
     user: 'postgres',
     host: 'host.docker.internal',
     database: 'mydatabase',
-    password: '7666',
-    port: 5432,
+    password: '2372002',
+    port: 5433,
 });
-
 const submitProblem = async (req, res) => {
     // Destructure the required fields from the request body
     const { description, title, user, input_data } = req.body;
@@ -84,7 +83,6 @@ const getView = async (req, res) => {
 
 
 
-
 const getResults = async (req, res) => {
     const id = parseInt(req.params.id, 10); // Ensure id is an integer
     if (isNaN(id)) {
@@ -118,10 +116,39 @@ const getResults = async (req, res) => {
     }
 };
 
+const updateInputData = async (req, res) => {
+    const id = parseInt(req.params.id, 10); // Ensure id is an integer
+    const { input_data } = req.body; // Get input_data from the request body
+
+    if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: 'Invalid problem ID' });
+    }
+
+    try {
+        // Update the input_data for the specific problem ID
+        const result = await pool.query(
+            'UPDATE problems SET input_data = $1 WHERE id = $2 RETURNING *',
+            [JSON.stringify(input_data), id] // Convert input_data to string if necessary
+        );
+
+        // Check if the problem exists
+        if (result.rowCount === 0) {
+            return res.status(404).json({ success: false, message: 'Problem not found' });
+        }
+
+        // Respond with the updated problem
+        res.json({ success: true, problem: result.rows[0] });
+    } catch (error) {
+        console.error('Error updating input data in database:', error);
+        res.status(500).json({ success: false, message: 'Failed to update input data' });
+    }
+};
+
 
 module.exports = {
     submitProblem,
     deleteProblem,
     getView,
-    getResults
+    getResults,
+    updateInputData
 };
