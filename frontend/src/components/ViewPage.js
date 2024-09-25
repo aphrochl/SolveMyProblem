@@ -115,8 +115,8 @@ const ViewPage = () => {
                     <div className="action-buttons">
                         <button onClick={triggerFileInput}>Upload</button>
                         <button onClick={handleDownload}>Download</button>
-                        {/* Trigger the download on click */}
-                        {/* Hidden file input for upload */}
+                        <button className="save-button">Save</button>
+                        {/* New Save button */}
                         <input
                             type="file"
                             id="file-input"
