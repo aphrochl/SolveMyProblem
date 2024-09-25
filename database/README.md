@@ -1,7 +1,9 @@
-# Tables
+```sh
+ALTER TABLE statistics
+ADD COLUMN cpu_usage text,
+ADD COLUMN memory_usage text;
 
-## Statistics
-
-|   id  |   problem_id  |   processing_time |   cpu_usage   |   memory_usage    |   created_at  |
-|-------|---------------|-------------------|---------------|-------------------|---------------|
-|       |               |                   |               |                   |               |
+ALTER TABLE statistics
+ADD CONSTRAINT fk_problem
+FOREIGN KEY (problem_id) REFERENCES problems(id);
+```
