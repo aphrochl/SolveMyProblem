@@ -110,3 +110,19 @@
 .done-button:hover {
     background-color: #000000;
 }
+.json-display {
+    background: linear-gradient(to right, #ccfed8, #9ec5f7);
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 800px; /* Limit the width of the JSON display */
+    height: auto;
+    max-height: 400px; /* Limit the height and allow scrolling */
+    overflow-x: auto; /* Allow horizontal scrolling for very wide data */
+    overflow-y: auto; /* Allow vertical scrolling for long data */
+    white-space: pre-wrap; /* Preserve whitespace but allow line wrapping */
+    word-wrap: break-word; /* Ensure long words or lines are wrapped */
+    font-family: 'Courier New', Courier, monospace; /* Use a monospaced font */
+}
+
