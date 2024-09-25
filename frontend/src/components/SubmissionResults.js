@@ -9,10 +9,16 @@ import Header from './Header';
 const SubmissionResults = () => {
     const navigate = useNavigate();
 
+    // Handle the download functionality (you can adjust it as needed)
+    const handleDownload = () => {
+        // Logic for downloading the results goes here
+        alert('Results Downloaded');
+    };
+
     return (
         <div className="submission-results">
             <header className="results-header">
-                <Header/>
+                <Header />
             </header>
 
             <main className="results-main">
@@ -20,24 +26,18 @@ const SubmissionResults = () => {
                     <h3>Metadata</h3>
                     <table>
                         <thead>
-                        <tr>
-                            <th>name</th>
-                            <th>description</th>
-                            <th>value</th>
-                        </tr>
+                            <tr>
+                                <th>Created at</th>
+                                <th>Solved at</th>
+                                <th>User</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>name1</td>
-                            <td>description1</td>
-                            <td>value1</td>
-                        </tr>
-                        <tr>
-                            <td>name2</td>
-                            <td>description2</td>
-                            <td>value2</td>
-                        </tr>
-                        {/* Προσθέστε όσες σειρές χρειάζεται */}
+                            <tr>
+                                <td>Created at</td>
+                                <td>Solved at</td>
+                                <td>User</td>
+                            </tr>
                         </tbody>
                     </table>
                 </section>
@@ -45,24 +45,17 @@ const SubmissionResults = () => {
                 <section className="results-charts">
                     <h3>Results</h3>
                     <div className="chart">
-                        <p>dataset id: 1, dataset name: Dataset 1</p>
-                        {/* Εδώ μπορείτε να προσθέσετε τα γραφήματα σας */}
                         <div className="chart-visualization">Chart visualization area</div>
                     </div>
-                    <div className="chart">
-                        <p>dataset id: 2, dataset name: Dataset 2</p>
-                        {/* Εδώ μπορείτε να προσθέσετε τα γραφήματα σας */}
-                        <div className="chart-visualization">Chart visualization area</div>
-                    </div>
+
+                    {/* Download Results Button */}
+                    <button className="download-button" onClick={handleDownload}>
+                        Download Results
+                    </button>
                 </section>
             </main>
 
-            <footer className="results-footer">
-                <button>Download Excel</button>
-                <button>Download Raw</button>
-                <button onClick={() => navigate(-1)}>Return</button> {/* Επιστροφή στην προηγούμενη σελίδα */}
-                <Footer/>
-            </footer>
+            <Footer />
         </div>
     );
 };
