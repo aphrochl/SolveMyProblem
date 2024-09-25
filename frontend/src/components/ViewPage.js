@@ -30,6 +30,29 @@ const ViewPage = () => {
         fetchMetadata(); // Call the function to fetch metadata
     }, [id]); // Dependency array includes id
 
+    // Function to handle the download of input data
+    const handleDownload = () => {
+        // Convert inputData to JSON string
+        const dataStr = JSON.stringify(inputData, null, 2);
+
+        // Create a Blob object with the inputData string
+        const blob = new Blob([dataStr], { type: 'application/json' });
+
+        // Create a temporary anchor element to trigger the download
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `input_data_${id}.json`; // Set a filename for the download
+
+        // Append the anchor element to the body, trigger the click, and remove it
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // Revoke the object URL after the download
+        URL.revokeObjectURL(url);
+    };
+
     return (
         <div className="view-page">
             <Header />
@@ -65,7 +88,7 @@ const ViewPage = () => {
                     </div>
                     <div className="action-buttons">
                         <button>Upload</button>
-                        <button>Download</button>
+                        <button onClick={handleDownload}>Download</button> {/* Trigger the download on click */}
                     </div>
                 </div>
             </div>
