@@ -46,39 +46,16 @@ const deleteProblem = async (req, res) => {
     }
 };
 
-const getViewMetadata = async (req, res) => {
-    const id = parseInt(req.params.id, 10);
-    if (isNaN(id)) {
-        return res.status(400).json({ success: false, message: 'Invalid problem ID' });
-    }
-
-    try {
-        const result = await pool.query(
-            'SELECT created_at, "user", solved_at FROM problems WHERE id = $1',
-            [id]
-        );
-
-        if (result.rows.length === 0) {
-            return res.status(404).json({ success: false, message: 'Problem not found' });
-        }
-
-        res.json({ success: true, metadata: result.rows[0] });
-    } catch (error) {
-        console.error('Error fetching metadata from database:', error);
-        res.status(500).json({ success: false, message: 'Failed to retrieve metadata' });
-    }
-};
-
-const getViewData = async (req, res) => {
+const getView = async (req, res) => {
     const id = parseInt(req.params.id, 10); // Ensure id is an integer
     if (isNaN(id)) {
         return res.status(400).json({ success: false, message: 'Invalid problem ID' });
     }
 
     try {
-        // Query to fetch the input_data for the specific problem ID
+        // Query to fetch the results for the specific problem ID
         const result = await pool.query(
-            'SELECT input_data FROM problems WHERE id = $1',
+            'SELECT results FROM problems WHERE id = $1',
             [id]
         );
 
@@ -87,19 +64,59 @@ const getViewData = async (req, res) => {
             return res.status(404).json({ success: false, message: 'Problem not found' });
         }
 
-        // Respond with the retrieved input data
-        res.json({ success: true, input_data: result.rows[0].input_data });
+        // Parse the results field from text to JSON
+        const results = JSON.parse(result.rows[0].results);
+
+        // Separate the metadata and input_data (from within the data object)
+        const metadata = results.metadata;
+        const input_data = results.data.input_data;
+
+        // Respond with the separated metadata and input_data
+        res.json({ success: true, metadata, input_data });
     } catch (error) {
-        console.error('Error fetching input data from database:', error);
-        res.status(500).json({ success: false, message: 'Failed to retrieve input data' });
+        console.error('Error fetching and parsing results from database:', error);
+        res.status(500).json({ success: false, message: 'Failed to retrieve results' });
     }
 };
 
+
+const getResults = async (req, res) => {
+    const id = parseInt(req.params.id, 10); // Ensure id is an integer
+    if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: 'Invalid problem ID' });
+    }
+
+    try {
+        // Query to fetch the results for the specific problem ID
+        const result = await pool.query(
+            'SELECT results FROM problems WHERE id = $1',
+            [id]
+        );
+
+        // Check if the problem exists
+        if (result.rows.length === 0) {
+            return res.status(404).json({ success: false, message: 'Problem not found' });
+        }
+
+        // Parse the results field from text to JSON
+        const results = JSON.parse(result.rows[0].results);
+
+        // Separate the metadata and solution
+        const metadata = results.metadata;
+        const solution = results.solution;
+
+        // Respond with the separated metadata and solution
+        res.json({ success: true, metadata, solution });
+    } catch (error) {
+        console.error('Error fetching and parsing results from database:', error);
+        res.status(500).json({ success: false, message: 'Failed to retrieve results' });
+    }
+};
 
 
 module.exports = {
     submitProblem,
     deleteProblem,
-    getViewMetadata,
-    getViewData
+    getView,
+    getResults
 };
