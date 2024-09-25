@@ -1,12 +1,20 @@
 /* src/components/SubmissionResults.css */
 
+html, body {
+    height: 100%; /* Ensure the body and html occupy the full viewport */
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #ccfed8, #9ec5f7); /* Consistent background across the page */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 .submission-results {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(to right, #ccfed8, #9ec5f7);
-    justify-content: space-between;
-    height: 100vh;
+    min-height: 100vh; /* Allow page to be scrollable */
+    justify-content: flex-start; /* Align content at the top */
+    padding: 20px; /* Add some padding around the content */
 }
 
 .results-header, .results-footer {
@@ -18,21 +26,23 @@
 }
 
 .results-main {
-    flex: 1;
     width: 100%;
+    max-width: 1200px; /* Restrict the main content width */
     padding: 20px;
+    flex-grow: 1; /* Allow this section to grow and take available space */
 }
 
-.results-metadata, .results-charts {
+.results-section, .results-charts {
     margin-bottom: 20px;
 }
 
-.results-metadata table {
+.metadata-table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
-.results-metadata th, .results-metadata td {
+.metadata-table th, .metadata-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
@@ -50,26 +60,23 @@
     justify-content: center;
 }
 
-/* Styling for the Download Results button */
-.download-button {
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-/* Center the button */
-.results-charts {
+/* Button styling */
+.action-buttons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center; /* Center buttons */
+    gap: 10px; /* Add spacing between buttons */
 }
 
-.download-button:hover {
-    opacity: 0.8;
+.save-button {
+    background-color: #444444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #222222;
 }
 
