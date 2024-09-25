@@ -84,7 +84,7 @@ const ViewPage = () => {
                     <div className="dataset-details">
                         <p><strong>Input Data:</strong></p>
                         {/* Display the input data */}
-                        <pre>{JSON.stringify(inputData, null, 2)}</pre> {/* Format the input data for better readability */}
+                        <pre>{inputData}</pre>
                     </div>
                     <div className="action-buttons">
                         <button>Upload</button>
