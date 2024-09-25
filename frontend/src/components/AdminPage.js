@@ -25,20 +25,23 @@ const AdminPage = () => {
 
     // Handle problem deletion
     const handleDelete = async (id) => {
-        try {
+        if (window.confirm('Are you sure you want to delete this problem?')){
+            try {
                 const response = await fetch(`http://localhost:3003/problems/delete-problem/${id}`, { // Ensure this port is correct
                     method: 'DELETE',
                 });
                 const data = await response.json();
                 if (data.success) {
-                    alert('Problem solved successfully');
+                    setProblems(problems.filter(problem => problem.id !== id));  // Filter out deleted problem
+                    alert('Problem deleted successfully');
                 } else {
                     throw new Error(data.message);
                 }
             } catch (error) {
-                console.error('Error solving problem:', error);
-                alert('Failed to solve problem');
+                console.error('Error deleting problem:', error);
+                alert('Failed to delete problem');
             }
+        }
     };
 
     // Handle solver
