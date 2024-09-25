@@ -60,7 +60,7 @@ def solve():
         conn = get_db_connection()
         cur = conn.cursor()
 
-        # Fetch the 'model' and 'description' from the 'problems' table for the given problem_id
+        # Fetch all from the 'problems' table for the given problem_id
         cur.execute('SELECT * FROM problems WHERE id = %s', (problem_id,))
         problem = cur.fetchone()
 
@@ -116,10 +116,12 @@ def solve():
         # Fetch CPU usage stats
         sourceStatistics = getSourcesStats()
 
+        # Update Database with solution
         cur.execute('UPDATE problems SET status = %s, results = %s WHERE id = %s', ('Solved', json.dumps(result), problem_id,))
         conn.commit()
 
-        cur.execute('INSERT INTO statistics (problem_id, processing_time, created_at) VALUES (%s, %s, %s) ',(problem_id, time_taken, created_at))
+        # Update database with solution statistics
+        cur.execute('INSERT INTO statistics (problem_id, processing_time, created_at, cpu_usage, memory_usage) VALUES (%s, %s, %s, %s, %s) ',(problem_id, time_taken, created_at, json.dumps(sourceStatistics['cpuStats']), json.dumps(sourceStatistics['memoryStats'])))
         conn.commit()
 
         # Close the database connection

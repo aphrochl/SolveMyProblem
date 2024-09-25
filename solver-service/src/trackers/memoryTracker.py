@@ -8,5 +8,5 @@ def get_python_process_memory_usage():
     return {
         "rss": memory_info.rss,  # Resident Set Size
         "vms": memory_info.vms,  # Virtual Memory Size
-        "percent": process.memory_percent()  # Percentage of memory used by the process
+        "memory_percent": process.memory_percent()  # Percentage of memory used by the process
     }
