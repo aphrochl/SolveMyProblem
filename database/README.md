@@ -17,9 +17,6 @@ The database schema includes the following tables:
 3. **statistics**: Stores statistics related to problems, such as `processing_time`, `cpu_usage`, `memory_usage`, and the associated `problem_id`.
 
 ### Table Details
-
-- **users**: Contains user login credentials.
-  - Columns: `id`, `username`, `password`
   
 - **payments**: Contains payment details with information on amounts and timestamps.
   - Columns: `id`, `amount`, `purchased_at`
@@ -54,9 +51,6 @@ Refer to the `database.txt` file for full SQL commands and further details on ta
 
 ## Notes
 
-- The schema is designed to support various functionalities of the application, such as user management, payments, problem submission, and statistics tracking.
+- The schema is designed to support various functionalities of the application, such as payments, problem submission, and statistics tracking.
 - Ensure that your PostgreSQL server is configured properly and accessible before running the SQL script.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
