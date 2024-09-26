@@ -12,7 +12,7 @@ Before setting up the database, ensure that you have the following installed:
 ## Database Overview
 
 The database schema includes the following tables:
-1. **payments**: Stores payment-related data including `amount` and `purchased_at`.
+1. **payments**: Stores payment-related data including `amount`, `purchased_at` and `expires_at`.
 2. **problems**: Stores problem details such as `description`, `status`, `title`, `results`, `input_data`, and `user` information.
 3. **statistics**: Stores statistics related to problems, such as `processing_time`, `cpu_usage`, `memory_usage`, and the associated `problem_id`.
 
