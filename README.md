@@ -121,8 +121,8 @@ This project is a microservices-based application designed to handle various asp
   - `POSTGRES_USER`: `postgres`
   - `POSTGRES_HOST`: `host.docker.internal`
   - `POSTGRES_DB`: `mydatabase`
-  - `POSTGRES_PASSWORD`: `123`
-  - `POSTGRES_PORT`: `5432`
+  - `POSTGRES_PASSWORD`: `2372002`
+  - `POSTGRES_PORT`: `5433`
 
 ## Network Configuration
 
