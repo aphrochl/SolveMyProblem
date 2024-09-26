@@ -14,7 +14,6 @@
  **Τάκης Σταματόπουλος [el20096@mail.ntua.gr](https://github.com/ntua-el20096)**  
  **Αφροδίτη Μαριάνθη Χλαπάνη [el20889@mail.ntua.gr](https://github.com/ntua-el20889)**  
  **Κυριακή Καρατζούνη [el20634@mail.ntua.gr](https://github.com/ntua-el20634)**  
- **Δώρα Εξάρχου [el20865@mail.ntua.gr](https://github.com/ntua-el20865)**  
  
 # API Gateway
 
