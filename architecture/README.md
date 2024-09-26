@@ -2,7 +2,7 @@
 
 This repository contains the documentation related to our project. You will find the following diagrams:
 
-## 📋 Contents:
+## Contents:
 
 1. **Component Diagram**  
 
@@ -14,14 +14,11 @@ This repository contains the documentation related to our project. You will find
 
 ---
 
-## 🛠️ How to Access the Diagrams
+## How to Access the Diagrams
 
-All diagrams are stored in the Visual Paradigm file. Follow the steps below to view or modify the diagrams:
+All diagrams are stored in one Visual Paradigm file. Follow the steps below to view or modify the diagrams:
 
-1. **Download Visual Paradigm** (if you don't have it installed):  
-   [Download here](https://www.visual-paradigm.com/download/)
-
-2. **Open the Project File**:  
+**Open the Project File**:  
    Download the `.vpp` file from this repository and open it in Visual Paradigm.
 
 ---
