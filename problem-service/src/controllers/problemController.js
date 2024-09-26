@@ -33,19 +33,31 @@ const deleteProblem = async (req, res) => {
     }
 
     try {
+        // Start a transaction
+        await pool.query('BEGIN');
+
+        // Delete related statistics first
+        await pool.query('DELETE FROM statistics WHERE problem_id = $1', [id]);
+
+        // Delete the problem
         const result = await pool.query('DELETE FROM problems WHERE id = $1 RETURNING *', [id]);
+
         if (result.rowCount === 0) {
+            // Rollback if no problem is found
+            await pool.query('ROLLBACK');
             return res.status(404).json({ success: false, message: 'Problem not found' });
         } else {
+            // Commit the transaction if everything is successful
+            await pool.query('COMMIT');
             return res.json({ success: true, message: 'Problem deleted successfully', problem: result.rows[0] });
         }
     } catch (error) {
+        // Rollback in case of error
+        await pool.query('ROLLBACK');
         console.error('Error deleting problem from database:', error);
         res.status(500).json({ success: false, message: 'Failed to delete problem' });
     }
 };
-
-
 
 const getView = async (req, res) => {
     const id = parseInt(req.params.id, 10); // Ensure id is an integer
