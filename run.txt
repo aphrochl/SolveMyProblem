@@ -1,9 +1,0 @@
-Για πρώτη φορά που θα κατεβάσετε το backend directory:
-cd backend 
-nmp install
-
-Γενικά πάντα:
-
-docker-compose down   
-docker-compose build
-docker-compose up
