@@ -32,6 +32,7 @@ The database schema includes the following tables:
 
 Several modifications are made to the schema after initial table creation, including:
 - Dropping the foreign key and `user_id` column from the `payments` table.
+- Adding new column `expires_at` to the `payments` table.
 - Adding new columns (`results`, `user`, `solved_at`, `input_data`) to the `problems` table.
 - Adding new columns (`cpu_usage`, `memory_usage`) to the `statistics` table.
 
