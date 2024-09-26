@@ -9,6 +9,7 @@
 ![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Docker](https://img.shields.io/badge/Docker-0db7ed?style=for-the-badge&logo=docker&logoColor=white)
 ![pgAdmin](https://img.shields.io/badge/pgAdmin4-FF6C37?style=for-the-badge&logo=pgadmin&logoColor=white)
+![Apache Bench](https://img.shields.io/badge/Apache%20Bench-7F1F22?style=for-the-badge&logo=apache&logoColor=white)
 
 
 ## Teams Members 
