@@ -37,3 +37,43 @@ Ensure you have the following installed:
 - Node.js and npm (for JavaScript dependencies)
 - Python (for OR tools and other functionalities)
 - Docker
+
+
+### Setup
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/ntua/saas2024-55.git
+```
+
+2. **Install dependencies**:
+First, install Python dependencies specified in requirements.txt.
+
+```bash
+pip install -r requirements.txt
+```
+
+3. **Connect Database:**
+Connect Postgresql Database.
+
+#### Docker
+
+SimplySolved is Dockerized for easy deployment.
+
+1. **Build and run Docker containers:**
+   
+```bash
+docker-compose up --build
+```
+   This commmand builds the Docker images and starts the containers defined in `docker-compose.yml`.
+
+2. **Verify container status:**
+Run the following command in order to verify that all the necessary containers are running:
+
+```bash
+docker ps
+```
+### License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
