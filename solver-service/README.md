@@ -1,4 +1,4 @@
-# Solver
+# Solver Service
 
-This service is the solver service of the SolveMyProblem application.
+This is the solver service of the SolveMyProblem application.
 
