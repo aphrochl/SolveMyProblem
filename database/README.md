@@ -19,7 +19,7 @@ The database schema includes the following tables:
 ### Table Details
   
 - **payments**: Contains payment details with information on amounts and timestamps.
-  - Columns: `id`, `amount`, `purchased_at`
+  - Columns: `id`, `amount`, `purchased_at`, `expires_at`
   - Foreign key references `user_id` (later removed in an alteration).
 
 - **problems**: Stores the problems created within the system.
