@@ -23,7 +23,7 @@ The database schema includes the following tables:
   - Foreign key references `user_id` (later removed in an alteration).
 
 - **problems**: Stores the problems created within the system.
-  - Columns: `id`, `description`, `status`, `created_at`, `results`, `user`, `solved_at`, `input_data`
+  - Columns: `id`, `description`, `status`, `created_at`, `title`, `results`, `user`, `solved_at`, `input_data`
 
 - **statistics**: Contains performance data associated with problem solving.
   - Columns: `id`, `problem_id`, `processing_time`, `cpu_usage`, `memory_usage`, `created_at`
