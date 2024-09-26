@@ -1,0 +1,53 @@
+-- Δημιουργία πίνακα χρηστών
+CREATE TABLE users (
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(50) NOT NULL,
+	password VARCHAR(50) NOT NULL
+);
+
+-- Δημιουργία πίνακα πληρωμών
+CREATE TABLE payments (
+	id SERIAL PRIMARY KEY,
+	user_id INTEGER NOT NULL,
+	amount DECIMAL(10, 2) NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+-- Δημιουργία πίνακα προβλημάτων χωρίς user_id
+CREATE TABLE problems (
+	id SERIAL PRIMARY KEY,
+	description TEXT NOT NULL,
+	status VARCHAR(50) NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Δημιουργία πίνακα στατιστικών
+CREATE TABLE statistics (
+	id SERIAL PRIMARY KEY,
+	problem_id INTEGER NOT NULL,
+	processing_time DECIMAL(10, 2),
+	FOREIGN KEY (problem_id) REFERENCES problems (id),
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ -- Εισαγωγή δειγματικών χρηστών
+INSERT INTO users (username, password) VALUES ('user1', 'password1');
+INSERT INTO users (username, password) VALUES ('user2', 'password2');
+
+-- Εισαγωγή δειγματικών προβλημάτων (χωρίς user_id)
+INSERT INTO problems (description, status) VALUES ('Πρόβλημα 1', 'Pending');
+INSERT INTO problems (description, status) VALUES ('Πρόβλημα 2', 'Solved');
+
+-- Εισαγωγή δειγματικών πληρωμών
+INSERT INTO payments (user_id, amount) VALUES (1, 50.00);
+INSERT INTO payments (user_id, amount) VALUES (2, 75.00);
+
+-- Εισαγωγή δειγματικών στατιστικών
+INSERT INTO statistics (problem_id, processing_time) VALUES (1, 12.34);
+INSERT INTO statistics (problem_id, processing_time) VALUES (2, 56.78);
+
+ALTER TABLE payments DROP CONSTRAINT payments_user_id_fkey;
+ALTER TABLE payments DROP COLUMN user_id;
+
+ALTER TABLE payments ADD COLUMN purchased_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
