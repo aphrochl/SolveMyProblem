@@ -24,3 +24,16 @@
  **Τάκης Σταματόπουλος [el20096@mail.ntua.gr](https://github.com/ntua-el20096)**  
  **Αφροδίτη Μαριάνθη Χλαπάνη [el20889@mail.ntua.gr](https://github.com/ntua-el20889)**  
  **Κυριακή Καρατζούνη [el20634@mail.ntua.gr](https://github.com/ntua-el20634)**  
+
+
+### Installation
+
+#### Requirements
+
+Ensure you have the following installed:
+
+- PgAdmin4
+- Apache Bench
+- Node.js and npm (for JavaScript dependencies)
+- Python (for OR tools and other functionalities)
+- Docker
