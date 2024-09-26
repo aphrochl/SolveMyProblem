@@ -5,16 +5,12 @@ This repository contains the documentation related to our project. You will find
 ## 📋 Contents:
 
 1. **Component Diagram**  
-   A representation of the software components and their relationships.
 
 2. **Deployment Diagram**  
-   A model showing the physical deployment of artifacts on nodes.
 
 3. **Sequence Diagram**  
-   A detailed diagram that illustrates how processes interact over time.
 
 4. **ER (Entity-Relationship) Diagram**  
-   Depicts the data model and relationships between entities in the system.
 
 ---
 
