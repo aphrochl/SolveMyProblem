@@ -1,4 +1,8 @@
-![Logo](https://github.com/ntua/saas2024-55/blob/main/frontend/src/logo.png?raw=true)
+<h1 align="center">Simply Solved</h1>
+
+<p align="center">
+  <img src="https://github.com/ntua/saas2024-55/blob/main/frontend/src/logo.png?raw=true" alt="Logo">
+</p>
 
 # API Gateway
 
