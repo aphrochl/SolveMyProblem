@@ -114,7 +114,7 @@ This project is a microservices-based application designed to handle various asp
 - **Directory**: `./frontend`
 
 ### 7. **Backend**
-- **Description**: The core backend service managing the platform's overall functionality. It interacts with the PostgreSQL database.
+- **Description**: The core backend service. It interacts with the PostgreSQL database.
 - **Port**: `3007`
 - **Directory**: `./backend`
 - **Environment Variables**:
