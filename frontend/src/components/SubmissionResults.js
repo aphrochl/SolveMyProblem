@@ -7,6 +7,7 @@ import Header from './Header';
 const SubmissionResults = () => {
     const [metadata, setMetadata] = useState({ created_at: '', solved_at: '', user: '' });
     const [results, setResults] = useState('');
+    const [charts, setCharts] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -27,7 +28,18 @@ const SubmissionResults = () => {
             }
         };
 
+        const fetchCharts = async () => {
+            try {
+                const response = await fetch(`http://localhost:3004/statistics`);
+                const data = await response.json();
+                setCharts(data.statistics);
+            } catch (error) {
+                console.error('Error fetching statistics charts:', error);
+            }
+        };
+
         fetchResults();
+        fetchCharts();
     }, [id]);
 
     const handleDownload = () => {
@@ -45,58 +57,71 @@ const SubmissionResults = () => {
 
     return (
         <div className="submission-results">
-            <header className="results-header">
-                <Header />
-            </header>
+            <Header />
 
-            {/* Scrollable content */}
-            <div className="scrollable-content">
-                <main className="results-main">
-                    <section className="metadata-section">
-                        <h2><strong>Metadata</strong></h2>
-                        <table className="metadata-table">
-                            <thead>
-                                <tr>
-                                    <th>Created at</th>
-                                    <th>Solved at</th>
-                                    <th>User</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{metadata.created_at || 'N/A'}</td>
-                                    <td>{metadata.solved_at || 'N/A'}</td>
-                                    <td>{metadata.user || 'N/A'}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
+            {/* Metadata Section */}
+            <div className="metadata-section">
+                <h2><strong>Metadata</strong></h2>
+                <table className="metadata-table">
+                    <thead>
+                        <tr>
+                            <th>Created at</th>
+                            <th>Solved at</th>
+                            <th>User</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{metadata.created_at || 'N/A'}</td>
+                            <td>{metadata.solved_at || 'N/A'}</td>
+                            <td>{metadata.user || 'N/A'}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                    {/* Results Section */}
-                    <div className="results-section">
-                        <div className="results-row">
-                            <div className="results-details">
-                                <p><strong>Results:</strong></p>
-                                <pre
-                                    className="json-display">{JSON.stringify(results, null, 2) || 'No results available'}</pre>
-                            </div>
-                            <div className="action-buttons">
-                                {/* Download Results Button */}
-                                <button className="save-button" onClick={handleDownload}>
-                                    Download Results
-                                </button>
-                            </div>
+            {/* Results Section */}
+            <div className="input-data-section">
+                <div className="input-row">
+                    <div className="dataset-details">
+                        <p><strong>Results:</strong></p>
+                        {/* Display the results data with proper formatting and container styles */}
+                        <pre className="json-display">{JSON.stringify(results, null, 2) || 'No results available'}</pre>
+                    </div>
+                    <div className="action-buttons">
+                        <button onClick={handleDownload}>Download Results</button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Results Statistics Charts Section */}
+            <div className="statistics-charts-section">
+                <h2><strong>Results Statistics Charts</strong></h2>
+                {charts && (
+                    <div className="charts-container">
+                        <div className="chart">
+                            <h3>Line Plot</h3>
+                            {charts.line_plot && <img src={`data:image/png;base64,${charts.line_plot}`} alt="Line Plot" />}
+                        </div>
+                        <div className="chart">
+                            <h3>Bar Plot</h3>
+                            {charts.bar_plot && <img src={`data:image/png;base64,${charts.bar_plot}`} alt="Bar Plot" />}
+                        </div>
+                        <div className="chart">
+                            <h3>Box Plot</h3>
+                            {charts.box_plot && <img src={`data:image/png;base64,${charts.box_plot}`} alt="Box Plot" />}
+                        </div>
+                        <div className="chart">
+                            <h3>Radar Plot</h3>
+                            {charts.radar_plot && <img src={`data:image/png;base64,${charts.radar_plot}`} alt="Radar Plot" />}
                         </div>
                     </div>
+                )}
+            </div>
 
-                    {/* Results Charts Section */}
-                    <section className="results-charts">
-                        <h3>Statistics Charts</h3>
-                        <div className="chart">
-                            <div className="chart-visualization">Chart visualization area</div>
-                        </div>
-                    </section>
-                </main>
+            {/* Done Button */}
+            <div className="done-button-section">
+                <button className="done-button" onClick={() => navigate(-1)}>Done</button>
             </div>
 
             <Footer />
