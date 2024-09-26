@@ -33,7 +33,7 @@
 Ensure you have the following installed:
 
 - PgAdmin4
-- Apache Bench
+- JMeter
 - Node.js and npm (for JavaScript dependencies)
 - Python (for OR tools and other functionalities)
 - Docker
