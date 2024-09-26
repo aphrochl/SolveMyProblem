@@ -1,3 +1,5 @@
+![Logo](https://github.com/ntua/saas2024-55/blob/main/frontend/src/logo.png?raw=true)
+
 # API Gateway
 
 This service acts as an API Gateway for routing requests to different microservices.
