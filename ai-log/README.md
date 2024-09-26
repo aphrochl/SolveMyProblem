@@ -1,14 +1,20 @@
-# ai-log
+# AI Log Repository
 
-Περιεχόμενα:
+This repository contains all files related to **ai-tools-questionnaire - SaaS 24A**. These files can be uploaded through either the frontend platform or the CLI tool.
 
-- Όλα τα αρχεία του ai-tools-questionnaire - SaaS 24A που ανεβάσατε είτε με το frontend https://ailog.softlab.ntua.gr/ είτε με το CLI tool, το οποίο μπορείτε να κατεβάσετε απο το front-end.
+---
 
+## 📋 Contents
+
+- All files uploaded via the **Frontend**:  
+  [AI Log Frontend](https://ailog.softlab.ntua.gr/)
   
-**Προσοχή 1:** προσπαθείστε τα ονόματα αρχείων να διευκολύνουν την ταξινόμηση πχ 2023-10-29-16:55-req.zip
-  
-**Προσοχή 2:** κάθε αρχείο zip περιέχει:
-- το αρχείο μεταδεδομένων
-- το σύνολο του διαλόγου (prompts & answers) με το εργαλείο
-  
-Δείτε το video: https://youtu.be/eUAjxCRNODU
+- Files uploaded via the **CLI tool** (downloadable from the frontend).
+
+---
+
+## ⚠️ Important Guidelines
+
+### 1. Naming Conventions  
+Please ensure that the filenames facilitate easy sorting and organization.  
+**Example:**  
