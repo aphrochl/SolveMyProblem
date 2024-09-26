@@ -1,6 +1,6 @@
 # Project Documentation
 
-This repository contains essential documentation related to our project, represented through diagrams and models. Below, you will find detailed descriptions and links to our **Visual Paradigm file** that includes the following diagrams:
+This repository contains the documentation related to our project. You will find the following diagrams:
 
 ## 📋 Contents:
 
