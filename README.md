@@ -10,6 +10,9 @@
 ![Docker](https://img.shields.io/badge/Docker-0db7ed?style=for-the-badge&logo=docker&logoColor=white)
 ![pgAdmin](https://img.shields.io/badge/pgAdmin4-FF6C37?style=for-the-badge&logo=pgadmin&logoColor=white)
 ![Apache Bench](https://img.shields.io/badge/Apache%20Bench-7F1F22?style=for-the-badge&logo=apache&logoColor=white)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
 
 
 ## Teams Members 
