@@ -74,6 +74,61 @@ Run the following command in order to verify that all the necessary containers a
 ```bash
 docker ps
 ```
+
+Here are the microservices that should be running: 
+# Solve My Problem - Microservices Architecture
+
+This project is a microservices-based application designed to handle various aspects of a problem-solving platform. Each microservice is responsible for a specific task, such as user management, payment processing, problem submission, problem solving, and statistics generation. The system is orchestrated using Docker Compose.
+
+## Microservices
+
+### 1. **Payment Service**
+- **Description**: Handles payment transactions, including credit purchasing and balance management.
+- **Port**: `3002`
+- **Directory**: `./payment-service`
+
+### 2. **Problem Service**
+- **Description**: Allows users to submit problems, view them, and manage problem-related data.
+- **Port**: `3003`
+- **Directory**: `./problem-service`
+
+### 3. **Solver Service**
+- **Description**: This service manages the actual solving of the submitted problems. It has access to the Docker socket for running SDKs.
+- **Port**: `5000`
+- **Directory**: `./solver-service`
+- **Special Requirement**: The Docker socket (`/var/run/docker.sock`) is mounted to allow the service to run containers dynamically.
+
+### 4. **Statistics Service**
+- **Description**: Provides statistics and analytics on user submissions, problem-solving performance, and platform usage.
+- **Port**: `3004`
+- **Directory**: `./statistics-service`
+
+### 5. **API Gateway**
+- **Description**: Acts as a reverse proxy, routing requests to the appropriate microservices. All client requests pass through this gateway.
+- **Port**: `3000`
+- **Directory**: `./api-gateway`
+
+### 6. **Frontend**
+- **Description**: The user interface for the platform. This service provides the web-based frontend for users to interact with the system.
+- **Port**: `3006` (mapped to `80` internally)
+- **Directory**: `./frontend`
+
+### 7. **Backend**
+- **Description**: The core backend service managing the platform's overall functionality. It interacts with the PostgreSQL database.
+- **Port**: `3007`
+- **Directory**: `./backend`
+- **Environment Variables**:
+  - `POSTGRES_USER`: `postgres`
+  - `POSTGRES_HOST`: `host.docker.internal`
+  - `POSTGRES_DB`: `mydatabase`
+  - `POSTGRES_PASSWORD`: `123`
+  - `POSTGRES_PORT`: `5432`
+
+## Network Configuration
+
+All services are connected via the Docker bridge network named `solveMyProblemNetwork`. This allows inter-service communication and ensures isolation from external networks.
+
+
 ### License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
