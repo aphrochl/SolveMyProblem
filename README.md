@@ -8,6 +8,8 @@
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Docker](https://img.shields.io/badge/Docker-0db7ed?style=for-the-badge&logo=docker&logoColor=white)
+![pgAdmin](https://img.shields.io/badge/pgAdmin4-FF6C37?style=for-the-badge&logo=pgadmin&logoColor=white)
+
 
 ## Teams Members 
 
