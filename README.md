@@ -21,9 +21,9 @@
 
  
 
- **Τάκης Σταματόπουλος [el20096@mail.ntua.gr](https://github.com/ntua-el20096)**  
- **Αφροδίτη Μαριάνθη Χλαπάνη [el20889@mail.ntua.gr](https://github.com/ntua-el20889)**  
- **Κυριακή Καρατζούνη [el20634@mail.ntua.gr](https://github.com/ntua-el20634)**  
+ **Takis Stamatopoulos [el20096@mail.ntua.gr](https://github.com/ntua-el20096)**  
+ **Afroditi Marianthi Chlapani [el20889@mail.ntua.gr](https://github.com/ntua-el20889)**  
+ **Kyriaki Karatzouni [el20634@mail.ntua.gr](https://github.com/ntua-el20634)**  
 
 
 ### Installation
