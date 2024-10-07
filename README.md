@@ -27,6 +27,33 @@ Key features:
 - **Dockerized architecture**: The system is fully containerized, making it easy to deploy and scale.
 - **Version control and project management**: GitHub is used for source code management, version control, and project tracking.
 
+## Project Overview
+
+**SolveMyProblem** is a **SaaS** web application that allows users to solve complex computational problems, such as simulations or optimizations, using cloud-based resources without requiring expensive hardware or software licenses. Users pay for resources only when they use the service.
+
+### Key Features
+- **Microservices architecture**: Independent services for payments, problem handling, solving, and statistics, ensuring scalability and flexibility.
+- **Cloud-based computation**: The platform runs on cloud infrastructure, allowing for large-scale problem-solving.
+- **Google OR-Tools**: The platform utilizes Google’s OR-Tools library for solving optimization and operations research problems.
+- **Credit-based system**: Users purchase credits to solve problems based on the computational resources consumed.
+- **User-friendly frontend**: A web interface enables users to submit problems, track their status, and view statistics.
+
+### Architecture & Technologies
+- **Microservices**: Each service (payment, problem-solving, statistics) runs independently.
+- **API Gateway**: Routes requests from the frontend to appropriate services.
+- **Dockerized deployment**: The entire platform is containerized, ensuring easy deployment and scaling.
+- **PostgreSQL**: Used for managing user data, transactions, and problem submissions.
+- **Development tools**: WebStorm, Node.js, Python, Bootstrap for frontend/backend; GitHub for version control.
+
+### Core Functions
+1. **Buy credits**: Users purchase credits to submit and solve problems.
+2. **Submit problems**: Users submit their problems for automated solving.
+3. **View status**: Users track their problem submissions and resolutions.
+4. **View statistics**: Analytics on problem-solving performance and usage.
+
+The application is stress-tested with **JMeter** and deployed using **Docker** containers.
+
+
 ---
 
 ## Our Project Consists of
