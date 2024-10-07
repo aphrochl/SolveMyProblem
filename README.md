@@ -1,7 +1,7 @@
 <h1 align="center">Simply Solved</h1>
 
 <p align="center">
-  <img src="https://github.com/ntua-el20889/SolveMyProblem/blob/main/frontend/src/logo.png?raw=true" alt="Logo">
+  <img src="https://github.com/aphrochl/SolveMyProblem/blob/main/frontend/src/logo.png?raw=true" alt="Logo">
 </p>
 
 ---
