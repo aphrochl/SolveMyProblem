@@ -33,10 +33,9 @@ Key features:
 
 ### Key Features
 - **Microservices architecture**: Independent services for payments, problem handling, solving, and statistics, ensuring scalability and flexibility.
-- **Cloud-based computation**: The platform runs on cloud infrastructure, allowing for large-scale problem-solving.
 - **Google OR-Tools**: The platform utilizes Google’s OR-Tools library for solving optimization and operations research problems.
 - **Credit-based system**: Users purchase credits to solve problems based on the computational resources consumed.
-- **User-friendly frontend**: A web interface enables users to submit problems, track their status, and view statistics.
+- **User-friendly frontend**: A web interface enables users to submit problems and view statistics.
 
 ### Architecture & Technologies
 - **Microservices**: Each service (payment, problem-solving, statistics) runs independently.
