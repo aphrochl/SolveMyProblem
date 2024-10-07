@@ -16,19 +16,6 @@
 
 ## Project Overview
 
-This project implements **Simply Solved**, a microservices-based platform designed to manage user-submitted problems, automatically solve them, and handle payments and statistics. The application follows a full-stack implementation with separate services for core functionalities, communication through REST APIs, and Docker-based orchestration.
-
-Key features:
-- **Backend microservices**: Several microservices, including user management, problem handling, solution generation, payments, and statistics, each running as an independent service. 
-- **API Gateway**: A reverse proxy that routes requests from the frontend to the appropriate backend microservices.
-- **Problem submission and solving**: Users can submit problems, which are automatically processed and solved by the system.
-- **Payment handling**: The platform manages transactions related to user credits and balances.
-- **Statistics and analytics**: Extraction of detailed usage metrics and performance statistics based on user-submitted problems and solutions.
-- **Dockerized architecture**: The system is fully containerized, making it easy to deploy and scale.
-- **Version control and project management**: GitHub is used for source code management, version control, and project tracking.
-
-## Project Overview
-
 **SolveMyProblem** is a **SaaS** web application that allows users to solve complex computational problems, such as simulations or optimizations, using cloud-based resources without requiring expensive hardware or software licenses. Users pay for resources only when they use the service.
 
 ### Key Features
@@ -38,11 +25,11 @@ Key features:
 - **User-friendly frontend**: A web interface enables users to submit problems and view statistics.
 
 ### Architecture & Technologies
-- **Microservices**: Each service (payment, problem-solving, statistics) runs independently.
+- **Microservices**: Each service (payment, problem, solver, statistics) runs independently.
 - **API Gateway**: Routes requests from the frontend to appropriate services.
 - **Dockerized deployment**: The entire platform is containerized, ensuring easy deployment and scaling.
 - **PostgreSQL**: Used for managing user data, transactions, and problem submissions.
-- **Development tools**: WebStorm, Node.js, Python, Bootstrap for frontend/backend; GitHub for version control.
+- **Development tools**: Pycharm, Node.js, Python, Bootstrap for frontend/backend; GitHub for version control.
 
 ### Core Functions
 1. **Buy credits**: Users purchase credits to submit and solve problems.
