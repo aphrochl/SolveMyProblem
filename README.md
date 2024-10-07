@@ -1,7 +1,7 @@
-# Simply Solved
+<h1 align="center">Simply Solved</h1>
 
 <p align="center">
-  <img src="https://github.com/ntua/saas2024-55/blob/main/frontend/src/logo.png?raw=true" alt="Logo" width="200">
+  <img src="https://github.com/ntua/saas2024-55/blob/main/frontend/src/logo.png?raw=true" alt="Logo">
 </p>
 
 ---
