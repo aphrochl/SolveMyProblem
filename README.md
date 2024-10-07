@@ -58,7 +58,7 @@ Ensure you have the following installed:
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/ntua/saas2024-55.git
+git clone https://github.com/ntua-el20889/SolveMyProblem.git
 ```
 
 2. **Install dependencies**:
