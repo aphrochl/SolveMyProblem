@@ -44,14 +44,14 @@ The application is stress-tested with **JMeter** and deployed using **Docker** c
 
 ## Our Project Consists of
 
-### [Documentation](https://github.com/ntua-el20889/SolveMyProblem/tree/main/architecture)
-### [Backend](https://github.com/ntua-el20889/SolveMyProblem/tree/main/backend)
-### [Frontend](https://github.com/ntua-el20889/SolveMyProblem/tree/main/frontend)
-### [Payment-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/payment-service)
-### [Problem-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/problem-service)
-### [Solver-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/solver-service)
-### [Statistics-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/statistics-service)
-### [AI-Log](https://github.com/ntua-el20889/SolveMyProblem/tree/main/ai-log/README.md)
+### [Documentation](https://github.com/aphrochl/SolveMyProblem/tree/main/architecture)
+### [Backend](https://github.com/aphrochl/SolveMyProblem/tree/main/backend)
+### [Frontend](https://github.com/aphrochl/SolveMyProblem/tree/main/frontend)
+### [Payment-Service](https://github.com/aphrochl/SolveMyProblem/tree/main/payment-service)
+### [Problem-Service](https://github.com/aphrochl/SolveMyProblem/tree/main/problem-service)
+### [Solver-Service](https://github.com/aphrochl/SolveMyProblem/tree/main/solver-service)
+### [Statistics-Service](https://github.com/aphrochl/SolveMyProblem/tree/main/statistics-service)
+### [AI-Log](https://github.com/aphrochl/SolveMyProblem/tree/main/ai-log/README.md)
 
 ---
 
@@ -71,7 +71,7 @@ Ensure you have the following installed:
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/ntua-el20889/SolveMyProblem.git
+git clone https://github.com/aphrochl/SolveMyProblem.git
 ```
 
 2. **Install dependencies**:
