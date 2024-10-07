@@ -31,10 +31,13 @@ Key features:
 
 ## Our Project Consists of
 
+### [Documentation](https://github.com/ntua-el20889/SolveMyProblem/tree/main/architecture)
 ### [Backend](https://github.com/ntua-el20889/SolveMyProblem/tree/main/backend)
-### [CLI Client](https://github.com/ntua-el20889/SolveMyProblem/tree/main/cli-client)
 ### [Frontend](https://github.com/ntua-el20889/SolveMyProblem/tree/main/frontend)
-### [Documentation](https://github.com/ntua-el20889/SolveMyProblem/tree/main/documentation)
+### [Payment-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/payment-service)
+### [Problem-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/problem-service)
+### [Solver-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/solver-service)
+### [Statistics-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/statistics-service)
 ### [AI-Log](https://github.com/ntua-el20889/SolveMyProblem/tree/main/ai-log)
 
 ---
@@ -55,3 +58,4 @@ Ensure you have the following installed:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/ntua-el20889/SolveMyProblem.git
+   ```
