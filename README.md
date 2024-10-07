@@ -38,7 +38,7 @@ Key features:
 ### [Problem-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/problem-service)
 ### [Solver-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/solver-service)
 ### [Statistics-Service](https://github.com/ntua-el20889/SolveMyProblem/tree/main/statistics-service)
-### [AI-Log](https://github.com/ntua-el20889/SolveMyProblem/tree/main/ai-log)
+### [AI-Log](https://github.com/ntua-el20889/SolveMyProblem/tree/main/ai-log/README.md)
 
 ---
 
