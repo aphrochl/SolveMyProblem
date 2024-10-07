@@ -1,3 +1,3 @@
 # Problem Service
 
-This is the Problem Service for the SolveMyProblem application.
+This is the problem service for the SolveMyProblem application.
